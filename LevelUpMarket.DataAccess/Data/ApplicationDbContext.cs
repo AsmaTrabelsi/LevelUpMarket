@@ -12,6 +12,8 @@ namespace LevelUpMarket.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<CoverType> CoverTypes { get; set; }
         public DbSet<Plateforme> Plateformes { get; set; }
+        public DbSet<Developer> Developers { get; set; }
+        public DbSet<Character> Characters { get; set; }
         public DbSet<Game> Games { get; set; }
         public DbSet<Image> Images { get; set; }
 

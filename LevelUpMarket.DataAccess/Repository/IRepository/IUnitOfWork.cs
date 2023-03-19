@@ -10,6 +10,9 @@ namespace LevelUpMarket.DataAccess.Repository.IRepository
     {
         ICategoryRepository Category { get; }
         ICoverTypeRepository CoverType { get; }
+        IDeveloperRepository Developer { get; }
+        ICharacterRepository Character { get; }
+        IGameRepository Game { get; }
         void Save();
     }
 }
