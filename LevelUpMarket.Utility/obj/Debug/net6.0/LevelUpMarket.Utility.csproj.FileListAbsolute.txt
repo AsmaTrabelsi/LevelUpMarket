@@ -1,0 +1,12 @@
+C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket.Utility\bin\Debug\net6.0\LevelUpMarket.Utility.deps.json
+C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket.Utility\bin\Debug\net6.0\LevelUpMarket.Utility.dll
+C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket.Utility\bin\Debug\net6.0\LevelUpMarket.Utility.pdb
+C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket.Utility\obj\Debug\net6.0\LevelUpMarket.Utility.csproj.AssemblyReference.cache
+C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket.Utility\obj\Debug\net6.0\LevelUpMarket.Utility.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket.Utility\obj\Debug\net6.0\LevelUpMarket.Utility.AssemblyInfoInputs.cache
+C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket.Utility\obj\Debug\net6.0\LevelUpMarket.Utility.AssemblyInfo.cs
+C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket.Utility\obj\Debug\net6.0\LevelUpMarket.Utility.csproj.CoreCompileInputs.cache
+C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket.Utility\obj\Debug\net6.0\LevelUpMarket.Utility.dll
+C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket.Utility\obj\Debug\net6.0\refint\LevelUpMarket.Utility.dll
+C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket.Utility\obj\Debug\net6.0\LevelUpMarket.Utility.pdb
+C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket.Utility\obj\Debug\net6.0\ref\LevelUpMarket.Utility.dll
