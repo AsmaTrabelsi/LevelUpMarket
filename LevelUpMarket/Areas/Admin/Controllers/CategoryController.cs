@@ -4,8 +4,9 @@ using LevelUpMarket.DataAccess.Repository.IRepository;
 using LevelUpMarket.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LevelUpMarket.Controllers
+namespace LevelUpMarketWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -29,9 +30,9 @@ namespace LevelUpMarket.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Category category)
         {
-            if(category.Name == category.DisplayOrder.ToString())
+            if (category.Name == category.DisplayOrder.ToString())
             {
-                ModelState.AddModelError("name","the display cannot exactly match the name");
+                ModelState.AddModelError("name", "the display cannot exactly match the name");
             }
             if (ModelState.IsValid)
             {
@@ -41,18 +42,18 @@ namespace LevelUpMarket.Controllers
                 return RedirectToAction("Index");
             }
             return View(category);
-         
+
         }
 
         //Get
         public IActionResult Edit(int? id)
         {
-            if(id== null || id == 0)
+            if (id == null || id == 0)
             {
                 return NotFound();
             }
-            var category = _unitOfWork.Category.GetFirstOrDefault(x=>x.Id == id);
-            if(category == null)
+            var category = _unitOfWork.Category.GetFirstOrDefault(x => x.Id == id);
+            if (category == null)
             {
                 return NotFound();
             }
@@ -83,7 +84,7 @@ namespace LevelUpMarket.Controllers
             {
                 return NotFound();
             }
-            var category = _unitOfWork.Category.GetFirstOrDefault(x=> x.Id == id);
+            var category = _unitOfWork.Category.GetFirstOrDefault(x => x.Id == id);
             if (category == null)
             {
                 return NotFound();
@@ -103,8 +104,8 @@ namespace LevelUpMarket.Controllers
             _unitOfWork.Category.Remove(category);
             _unitOfWork.Save();
             TempData["success"] = "category has deleted successfuly";
-                return RedirectToAction("Index");
-    
+            return RedirectToAction("Index");
+
         }
     }
 }
