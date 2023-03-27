@@ -17,6 +17,7 @@ namespace LevelUpMarket.Models
        public string Description { get; set; }
         [Required]
        public bool MainCharacter { get; set; }
+        public string ImageUrl { get; set; }
         [Required]
        public CharacterType CharacterType { get; set; }
        public int GameId { get; set; }

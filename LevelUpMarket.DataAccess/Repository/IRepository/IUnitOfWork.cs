@@ -13,6 +13,7 @@ namespace LevelUpMarket.DataAccess.Repository.IRepository
         IDeveloperRepository Developer { get; }
         ICharacterRepository Character { get; }
         IGameRepository Game { get; }
+        IPlateformeRepository Plateforme { get; }
         void Save();
     }
 }

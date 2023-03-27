@@ -19,12 +19,14 @@ namespace LevelUpMarket.DataAccess.Repository
             Developer =new DeveloperRepository(_db);
             Character = new CharacterRepository(_db);
             Game = new GameRepository(_db);
+            Plateforme = new PlateformeRepository(_db);
         }
         public ICategoryRepository Category { get; private set; }
         public ICoverTypeRepository CoverType { get; private set; }
         public IDeveloperRepository Developer { get; private set; }
         public ICharacterRepository Character { get; private set; }
         public IGameRepository Game { get; private set; }
+        public IPlateformeRepository Plateforme { get; private set; }
 
 
         void IUnitOfWork.Save()

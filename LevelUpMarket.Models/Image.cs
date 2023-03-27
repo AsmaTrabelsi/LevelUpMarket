@@ -11,7 +11,9 @@ namespace LevelUpMarket.Models
     {
         [Key]
         public int Id { get; set; }
-        public string ImageURL { get; set; }
+        public string Name { get; set; }
+        public byte[] Bytes { get; set; }
+        
         //navigation properties
         public int GameId { get; set; }
         public virtual Game Game { get; set; }

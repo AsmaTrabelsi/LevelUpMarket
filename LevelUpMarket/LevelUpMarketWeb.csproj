@@ -20,4 +20,8 @@
     <ProjectReference Include="..\LevelUpMarket.DataAccess\LevelUpMarket.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\Games\" />
+  </ItemGroup>
+
 </Project>

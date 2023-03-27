@@ -574,3 +574,6 @@ C:\Users\hj137AG\source\repos\LevelUpMarkettest\LevelUpMarket\obj\Debug\net6.0\r
 C:\Users\hj137AG\source\repos\LevelUpMarkettest\LevelUpMarket\obj\Debug\net6.0\LevelUpMarketWeb.pdb
 C:\Users\hj137AG\source\repos\LevelUpMarkettest\LevelUpMarket\obj\Debug\net6.0\LevelUpMarketWeb.genruntimeconfig.cache
 C:\Users\hj137AG\source\repos\LevelUpMarkettest\LevelUpMarket\obj\Debug\net6.0\ref\LevelUpMarketWeb.dll
+C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket\obj\Debug\net6.0\LevelUpMarketWeb.MvcApplicationPartsAssemblyInfo.cs

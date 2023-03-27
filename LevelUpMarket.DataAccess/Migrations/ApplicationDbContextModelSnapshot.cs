@@ -78,6 +78,10 @@ namespace LevelUpMarket.Migrations
                     b.Property<int>("GameId")
                         .HasColumnType("int");
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("MainCharacter")
                         .HasColumnType("bit");
 
@@ -89,7 +93,7 @@ namespace LevelUpMarket.Migrations
 
                     b.HasIndex("GameId");
 
-                    b.ToTable("Character");
+                    b.ToTable("Characters");
                 });
 
             modelBuilder.Entity("LevelUpMarket.Models.CoverType", b =>
@@ -124,7 +128,7 @@ namespace LevelUpMarket.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Developer");
+                    b.ToTable("Developers");
                 });
 
             modelBuilder.Entity("LevelUpMarket.Models.Game", b =>
@@ -189,10 +193,14 @@ namespace LevelUpMarket.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<byte[]>("Bytes")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<int>("GameId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ImageURL")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
