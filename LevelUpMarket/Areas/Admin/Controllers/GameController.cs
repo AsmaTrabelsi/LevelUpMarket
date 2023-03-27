@@ -75,6 +75,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
             
             if (ModelState.IsValid)
             {
+                string wwwRootPath = _hostEnvironment.WebRootPath;
                 if(files != null && files.Count>0)
                 {
                     gameVm.Game.Images = new List<Image>();
@@ -92,7 +93,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
                             gameVm.Game.Images.Add(image);
 
                         }
-             
+              
                     }
 
                 }

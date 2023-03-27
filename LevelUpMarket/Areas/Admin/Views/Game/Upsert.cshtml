@@ -1,32 +1,31 @@
 ﻿@model LevelUpMarket.Models.ViewModel.GameVM
 
 <form method="post" asp-action="Upsert" enctype="multipart/form-data">
-        <input asp-for="Game.Id" hidden />
+    <input asp-for="Game.Id" hidden />
     <div class="border p-3 mt-4 row">
         <div class="row pb-2">
             <h2 class="text-primary">@(Model.Game != null && Model.Game.Id != 0 ? "Edit " + Model.Game.Name : "Add New Game") </h2>
-     </div>
-       <div class="drag-container mb-3">
-    <div class="drag-drop">
-                <input type="file" id="upload-button" multiple accept="image/*" asp-for="Game.Images" class="form-control" />
-        <label for="upload-button" class="labelButton">
-            <i class="bi bi-cloud-arrow-up-fill"></i>&nbsp; Choose Or Drop Photos
-        </label>
-        <div id="error"></div>
-        <div id="image-display"></div>
-    </div>
-     <span asp-validation-for="Game.Images" class="text-danger"></span>
+        </div>
+        <div class="drag-container mb-3">
+            <div class="drag-drop">
+                <input type="file" id="upload-button" multiple accept="image/*"  />
+                <label for="upload-button" class="labelButton">
+                    <i class="bi bi-cloud-arrow-up-fill"></i>&nbsp; Choose Or Drop Photos
+                </label>
+                <div id="error"></div>
+                <div id="image-display"></div>
+            </div>
 
-</div>
+        </div>
         <div class="col-6">
-             <div class="mb-3">
-            <input placeholder="Name" asp-for="Game.Name" class="form-control"/>
-        <span asp-validation-for="Game.Name" class="text-danger"></span>
-        </div>
-        <div class="mb-3">
-            <input placeholder="Price" asp-for="Game.Price" class="form-control" />
-            <span asp-validation-for="Game.Price" class="text-danger"></span>
-        </div>
+            <div class="mb-3">
+                <input placeholder="Name" asp-for="Game.Name" class="form-control" />
+                <span asp-validation-for="Game.Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input placeholder="Price" asp-for="Game.Price" class="form-control" />
+                <span asp-validation-for="Game.Price" class="text-danger"></span>
+            </div>
             <div class="mb-3">
                 <label asp-for="Game.ReleaseDate"></label>
                 <input asp-for="Game.ReleaseDate" class="form-control" />
@@ -39,42 +38,42 @@
                 </select>
                 <span asp-validation-for="Game.DeveloperId" class="text-danger"></span>
             </div>
-               <div class="row">
-             <div class="mb-3 col-6">
-                <input type="checkbox" id="offline" name="offline" asp-for="Game.OfflinePlayEnable">
-                <label asp-for="Game.OfflinePlayEnable"></label>
-            </div>
-            <div class="mb-3 col-6">
-                <input type="checkbox" id="available" name="available" asp-for="Game.Available">
-                <label asp-for="Game.Available"></label>
-            </div>
+            <div class="row">
+                <div class="mb-3 col-6">
+                    <input type="checkbox" id="offline" name="offline" asp-for="Game.OfflinePlayEnable">
+                    <label asp-for="Game.OfflinePlayEnable"></label>
+                </div>
+                <div class="mb-3 col-6">
+                    <input type="checkbox" id="available" name="available" asp-for="Game.Available">
+                    <label asp-for="Game.Available"></label>
+                </div>
                 <div class="mb-3 ">
-        <label asp-for="Game.Intro"></label>
-        <textarea asp-for="Game.Intro" class="form-control" rows="3"></textarea>
-        <span asp-validation-for="Game.Intro" class="text-danger"></span>
-        </div>
-        </div>
-         
-           
-        </div>
-       
-       
-    <div class="mb-3">
-        <label asp-for="Game.Story"></label>
-        <textarea asp-for="Game.Story" class="form-control" rows="5"></textarea>
-        <span asp-validation-for="Game.Story" class="text-danger"></span>
-    </div>
-   
+                    <label asp-for="Game.Intro"></label>
+                    <textarea asp-for="Game.Intro" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Game.Intro" class="text-danger"></span>
+                </div>
+            </div>
 
 
-       <div class="mb-3 col-6">
+        </div>
+
+
+        <div class="mb-3">
+            <label asp-for="Game.Story"></label>
+            <textarea asp-for="Game.Story" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="Game.Story" class="text-danger"></span>
+        </div>
+
+
+
+        <div class="mb-3 col-6">
             <label asp-for="PlateformeList"></label>
             <select asp-for="PlateformeList" asp-items="Model.PlateformeList" class="form-select">
                 <option disabled selected>--Select Plateforms--</option>
             </select>
             <span asp-validation-for="PlateformeList" class="text-danger"></span>
         </div>
-    <div class="mb-3 col-6">
+        <div class="mb-3 col-6">
             <label asp-for="Game.Genres"></label>
             <select asp-for="Game.Genres" class="form-control" multiple>
                 <option disabled selected>--Select option--</option>
@@ -85,8 +84,8 @@
             </select>
             <span asp-validation-for="Game.Genres" class="text-danger"></span>
         </div>
-  
-     
+
+
         <div class="mb-3 col-6">
             <label asp-for="Game.VoiceLanguages"></label>
             <select asp-for="Game.VoiceLanguages" class="form-control" multiple>
@@ -109,43 +108,46 @@
             </select>
             <span asp-validation-for="Game.SubtitleList" class="text-danger"></span>
         </div>
-      
-       
-    <div class="col-12">
-        @if( Model.Game != null && Model.Game.Id!=0){
-            <button type="submit" class="btn btn-primary" style="width:150px">
-                Update
-            </button>
-        }else{
-            <button onclick="return ValidateInput()" type="submit" class="btn btn-primary" style="width:150px">
-                Create
-            </button>
-        }
-      
-       <a asp-controller="Game" asp-action="Index" class="btn btn-secondary" style="width:150px">
-           Back to List
-       </a>
-    </div>
+
+
+        <div class="col-12">
+            @if (Model.Game != null && Model.Game.Id != 0)
+            {
+                <button type="submit" class="btn btn-primary" style="width:150px">
+                    Update
+                </button>
+            }
+            else
+            {
+                <button onclick="return ValidateInput()" type="submit" class="btn btn-primary" style="width:150px">
+                    Create
+                </button>
+            }
+
+            <a asp-controller="Game" asp-action="Index" class="btn btn-secondary" style="width:150px">
+                Back to List
+            </a>
+        </div>
     </div>
     <script src="~/js/game.js"></script>
 </form>
 
 @section Scripts
-{
+    {
     @{
-    <partial name="_ValidationScriptsPartial" />
-    <script src="~/js/game.js"></script>
-    
+        <partial name="_ValidationScriptsPartial" />
+        <script src="~/js/UploadImage.js"></script>
+
     }
     <script>
-        function ValidateInput(){
+        function ValidateInput() {
 
-            if(document.getElementById("uploadBox").files.length ==0){
+            if (document.getElementById("upload-button").files.length == 0) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
                     text: 'Please upload at last an Image!',
-              
+
                 });
                 return false;
             }
@@ -153,4 +155,3 @@
         }
     </script>
 }
-

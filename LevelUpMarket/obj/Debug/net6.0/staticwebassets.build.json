@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "MOoQmWmBKVVpWFFS8JDarx9srlQHbohecJsdapux7aw=",
+  "Hash": "yECUbp06BjV4ci6sg4ZtAEcNtv0penMRvvrn+GVlz/0=",
   "Source": "LevelUpMarketWeb",
   "BasePath": "_content/LevelUpMarketWeb",
   "Mode": "Default",
@@ -119,23 +119,6 @@
       "OriginalItemSpec": "wwwroot\\js\\game.js"
     },
     {
-      "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\js\\game2.js",
-      "SourceId": "LevelUpMarketWeb",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\",
-      "BasePath": "_content/LevelUpMarketWeb",
-      "RelativePath": "js/game2.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\game2.js"
-    },
-    {
       "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\js\\site.js",
       "SourceId": "LevelUpMarketWeb",
       "SourceType": "Discovered",
@@ -151,6 +134,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
+    },
+    {
+      "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\js\\UploadImage.js",
+      "SourceId": "LevelUpMarketWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\",
+      "BasePath": "_content/LevelUpMarketWeb",
+      "RelativePath": "js/UploadImage.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\UploadImage.js"
     },
     {
       "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
