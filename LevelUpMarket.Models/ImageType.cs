@@ -11,6 +11,7 @@ namespace LevelUpMarket.Models
         INIT,
         BG_STORY,
         BG_STORE,
-        NAVGATION
+        NAVGATION,
+        POSTER
     }
 }

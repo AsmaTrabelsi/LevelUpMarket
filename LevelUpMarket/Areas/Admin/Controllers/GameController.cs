@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace LevelUpMarketWeb.Areas.Admin.Controllers
 {
@@ -108,6 +110,10 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
                             {
                                 type = ImageType.BG_STORE;
                             }
+                            else if (file.FileName.ToLower().Contains(ImageType.POSTER.ToString().ToLower()))
+                            {
+                                type = ImageType.POSTER;
+                            }
                             else
                             {
                                 type = ImageType.NAVGATION;
@@ -120,19 +126,17 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
                                 file.CopyTo(stream);
                             }
 
-                            gameVm.Game.Images.Add(new Image { Name = fileName, ImageUrl= @"images/game"+fileName+extension, ImageType= type});
+                            gameVm.Game.Images.Add(new Image { Name = fileName, ImageUrl= @"images/Games/" + fileName+extension, ImageType= type});
                         }
                  
               
                     }
 
                 }
-                var items = gameVm.Game.Plateformes;
                 _unitOfWork.Game.Add(gameVm.Game);
-             
                 _unitOfWork.Save();
                 TempData["success"] = "Game has created successfuly";
-                return RedirectToAction("UpsertMoreDetails");
+                return RedirectToAction("Index");
 
             }
             return View(gameVm);
@@ -238,8 +242,15 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
         #region API CALLS
         [HttpGet]
         public IActionResult GetAll()
+
         {
-            var gameList = _unitOfWork.Game.GetAll();
+            var options = new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve,
+                // other options as needed
+            };
+            var gameList = _unitOfWork.Game.GetAll(includeProperties: "Images,Developer");
+            
             return Json(new {data = gameList});
         }
         #endregion

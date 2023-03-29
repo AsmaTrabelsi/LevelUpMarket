@@ -39,6 +39,7 @@ namespace LevelUpMarket.Models
         public ICollection<VoiceLanguage> VoiceLanguages { get; set; }
         
         public ICollection<Subtitle> Subtitles { get; set; }
+        [ValidateNever]
         public  ICollection<Plateforme> Plateformes { get; set; }
         public  ICollection<Image> Images { get; set; }
         public  ICollection<Video> Videos { get; set; }

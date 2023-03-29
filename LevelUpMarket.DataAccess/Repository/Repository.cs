@@ -25,17 +25,31 @@ namespace LevelUpMarket.DataAccess.Repository
         {
             _db.Add(entity);
         }
-
-        IEnumerable<T> IRepository<T>.GetAll()
+        // includeProperties = "Category, CoverType"
+        IEnumerable<T> IRepository<T>.GetAll(string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
+            if(includeProperties != null)
+            {
+                foreach (var includeProp in includeProperties.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries))
+                {
+                   query = query.Include(includeProp);
+                }
+            }
             return query.ToList();
         }
 
-        T IRepository<T>.GetFirstOrDefault(Expression<Func<T, bool>> filter)
+        T IRepository<T>.GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
             query= query.Where(filter);
+            if (includeProperties != null)
+            {
+                foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProp);
+                }
+            }
             return query.FirstOrDefault();
         }
 
