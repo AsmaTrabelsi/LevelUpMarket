@@ -5,6 +5,8 @@ using LevelUpMarket.Models;
 using LevelUpMarket.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Hosting;
+using System.Linq;
 
 namespace LevelUpMarketWeb.Areas.Admin.Controllers
 {
@@ -32,12 +34,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
             GameVM gameVM = new()
             {
                 Game = new(),
-               /* CategoryList = _unitOfWork.Category.GetAll().Select(
-                d => new SelectListItem
-                {
-                    Text = d.Name,
-                    Value = d.Id.ToString()
-                }),*/
+               
                 DeveloperList = _unitOfWork.Developer.GetAll().Select(
                  d => new SelectListItem
                  {
@@ -49,16 +46,31 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
               {
                   Text = d.Name,
                   Value = d.Id.ToString()
+              }),
+                SubtitleList = _unitOfWork.Subtitle.GetAll().Select(
+              s => new SelectListItem
+              {
+                  Text = s.Name,
+                  Value = s.Id.ToString()
+              }),
+                VoiceLanguagesList = _unitOfWork.VoiceLanguage.GetAll().Select(
+              v => new SelectListItem
+              {
+                  Text = v.Name,
+                  Value = v.Id.ToString()
+              }),
+                GenderList = _unitOfWork.Gender.GetAll().Select(
+              g => new SelectListItem
+              {
+                  Text = g.Name,
+                  Value = g.Id.ToString()
               })
 
             };
           
             if (id == null || id == 0)
             {
-                // cretae Game
-               // ViewBag.DeveloperList = DeveloperList;
-                //ViewBag.PlateformeList = PlateformeList;
-                //ViewBag.CategoryList = CategoryList;
+               
                 return View(gameVM);
             }
             else
@@ -70,7 +82,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Upsert(GameVM gameVm,List<IFormFile> files)
+        public  IActionResult Upsert(GameVM gameVm,List<IFormFile> files)
         {
             
             if (ModelState.IsValid)
@@ -81,22 +93,111 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
                     gameVm.Game.Images = new List<Image>();
                     foreach (var file in files)
                     {
-                        if (file.Length > 0 && file.ContentType.StartsWith("image/"))
+                        if(file != null)
                         {
-                            var image = new Image { Name = file.FileName };
-
-                            using (var stream = new MemoryStream())
+                            ImageType type;
+                            if (file.FileName.ToLower().Contains(ImageType.INIT.ToString().ToLower()))
                             {
-                                await file.CopyToAsync(stream);
-                                image.Bytes = stream.ToArray();
+                                type = ImageType.INIT;
                             }
-                            gameVm.Game.Images.Add(image);
+                            else if (file.FileName.ToLower().Contains(ImageType.BG_STORE.ToString().ToLower()))
+                            {
+                                type = ImageType.BG_STORE;
+                            }
+                            else if (file.FileName.ToLower().Contains(ImageType.BG_STORY.ToString().ToLower()))
+                            {
+                                type = ImageType.BG_STORE;
+                            }
+                            else
+                            {
+                                type = ImageType.NAVGATION;
+                            }
+                            string fileName = Guid.NewGuid().ToString();
+                            var uploads = Path.Combine(wwwRootPath, @"images/Games");
+                            var extension = Path.GetExtension(file.FileName);
+                            using (var stream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create)) 
+                            {
+                                file.CopyTo(stream);
+                            }
 
+                            gameVm.Game.Images.Add(new Image { Name = fileName, ImageUrl= @"images/game"+fileName+extension, ImageType= type});
                         }
+                 
               
                     }
 
                 }
+                var items = gameVm.Game.Plateformes;
+                _unitOfWork.Game.Add(gameVm.Game);
+             
+                _unitOfWork.Save();
+                TempData["success"] = "Game has created successfuly";
+                return RedirectToAction("UpsertMoreDetails");
+
+            }
+            return View(gameVm);
+
+        }
+        public IActionResult UpsertMoreDetails(int? id)
+        {
+            GameVM gameVM = new()
+            {
+                Game = new(),
+              
+                DeveloperList = _unitOfWork.Developer.GetAll().Select(
+                 d => new SelectListItem
+                 {
+                     Text = d.Name,
+                     Value = d.Id.ToString()
+                 }),
+                PlateformeList = _unitOfWork.Plateforme.GetAll().Select(
+              p => new SelectListItem
+              {
+                  Text = p.Name,
+                  Value = p.Id.ToString()
+              }),
+                SubtitleList = _unitOfWork.Subtitle.GetAll().Select(
+              s => new SelectListItem
+              {
+                  Text = s.Name,
+                  Value = s.Id.ToString()
+              }),
+                VoiceLanguagesList = _unitOfWork.VoiceLanguage.GetAll().Select(
+              v => new SelectListItem
+              {
+                  Text = v.Name,
+                  Value = v.Id.ToString()
+              }),
+                GenderList = _unitOfWork.Gender.GetAll().Select(
+              g => new SelectListItem
+              {
+                  Text = g.Name,
+                  Value = g.Id.ToString()
+              })
+
+            };
+
+            if (id == null || id == 0)
+            {
+                
+                return View(gameVM);
+            }
+            else
+            {
+                // update Game
+            }
+
+            return View(gameVM);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpsertMoreDeatils(GameVM gameVm)
+        {
+
+            if (ModelState.IsValid)
+            {
+               
+               
                 _unitOfWork.Game.Add(gameVm.Game);
                 _unitOfWork.Save();
                 TempData["success"] = "Game has created successfuly";
@@ -143,4 +244,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
         }
         #endregion
     }
+
+   
+   
 }

@@ -14,6 +14,9 @@ namespace LevelUpMarket.DataAccess.Repository.IRepository
         ICharacterRepository Character { get; }
         IGameRepository Game { get; }
         IPlateformeRepository Plateforme { get; }
+        ISubtitleRepository Subtitle { get; }
+        IVoiceLanguageRepository VoiceLanguage { get; }
+        IGenderRepository Gender { get; }
         void Save();
     }
 }

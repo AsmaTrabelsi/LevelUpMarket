@@ -14,6 +14,10 @@ namespace LevelUpMarket.Data
         public DbSet<Plateforme> Plateformes { get; set; }
         public DbSet<Developer> Developers { get; set; }
         public DbSet<Character> Characters { get; set; }
+        public DbSet<Gender> Genders { get; set; }
+        public DbSet<VoiceLanguage> VoiceLanguages { get; set; }
+        public DbSet<Subtitle> Subtitles { get; set; }
+
         public DbSet<Game> Games { get; set; }
         public DbSet<Image> Images { get; set; }
 
@@ -35,6 +39,22 @@ namespace LevelUpMarket.Data
                 .HasMany(g => g.Videos)
                 .WithOne(i => i.Game)
                 .HasForeignKey(i => i.GameId);
+            // relation many to many - game and subtitle - 
+            modelBuilder.Entity<Game>()
+               .HasMany(g => g.Subtitles)
+               .WithMany(p => p.Games)
+                .UsingEntity(j => j.ToTable("GameSubtitle"));
+            // relation many to many - game and voice language - 
+            modelBuilder.Entity<Game>()
+                .HasMany(g => g.VoiceLanguages)
+                .WithMany(p => p.Games)
+                 .UsingEntity(j => j.ToTable("GameVoiceLanguages"));
+            // relation many to many - game and Gender - 
+            modelBuilder.Entity<Game>()
+                .HasMany(g => g.Genders)
+                .WithMany(p => p.Games)
+                 .UsingEntity(j => j.ToTable("GameGenders"));
+
 
             base.OnModelCreating(modelBuilder);
 

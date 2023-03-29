@@ -83,3 +83,64 @@ container.addEventListener(
 window.onload = () => {
     error.innerText = "";
 };
+
+// add character and videos 
+let app = new Vue({
+    el: '#app',
+    data: {
+        msg: 'My msg',
+        addSub: '',
+        subjects: [{
+            id: 1,
+            sub: 'Learn JavaScript',
+            checked: false
+        },
+        {
+            id: 2,
+            sub: 'Learn Vue',
+            checked: false
+        },
+        {
+            id: 3,
+            sub: 'Create a App',
+            checked: false
+        },
+        ],
+    },
+    methods: {
+        pushSub: function () {
+            if (this.addSub) {
+                this.subjects.push({
+                    sub: this.addSub
+                });
+                this.addSub = ''
+            }
+        },
+        clearList: function () {
+            this.subjects = []
+        },
+        check: function (subject) {
+            subject.checked = true;
+        },
+        // get all todos when loading the page
+        getTodos() {
+            if (localStorage.getItem('todo_list')) {
+                this.subjects = JSON.parse(localStorage.getItem('todo_list'));
+            }
+        },
+    },
+    // for loacat storage
+    mounted() {
+        this.getTodos();
+    },
+    // for loacat storage
+    watch: {
+        subjects: {
+            handler: function (updatedList) {
+                localStorage.setItem('todo_list', JSON.stringify(updatedList));
+            },
+            deep: true
+        }
+    },
+    computed: {}
+})

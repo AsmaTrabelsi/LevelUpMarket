@@ -13,6 +13,7 @@ namespace LevelUpMarket.Models
         public int Id { get; set; }
         [Required]
         public string URL { get; set; }
+        public VideoType Type { get; set; }
 
         //navigation properties
         public int GameId { get; set; }

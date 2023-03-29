@@ -1,0 +1,227 @@
+﻿* {
+    box-sizing: border-box
+}
+
+button {
+    cursor: pointer;
+}
+
+#app {
+    margin-bottom: 30px;
+}
+
+#mainContent {
+    margin: 0 auto 120px;
+    max-width: 100%;
+    position: relative;
+}
+
+
+    #mainContent .frmInpt {
+        padding: 8px 12px;
+        border-radius: 3px;
+        border: none;
+        width: 45%;
+        font-size: 20px;
+        border: .5px solid lightgray;
+        margin-bottom: 6px;
+        margin-right: 20px;
+        float: left;
+        line-height: 34px
+    }
+
+    #mainContent input:focus {
+        outline: none
+    }
+
+#submitBtn {
+    background: rgba(173,216,230, .3);
+    cursor: pointer;
+    border: none;
+    padding: 1px 22px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    float: left
+}
+
+#mainContent ul {
+    list-style: none;
+    margin: 0;
+    margin-top: 12px;
+    padding: 0;
+    margin-bottom: 70px;
+}
+
+    #mainContent ul li button {
+        border-radius: 4px;
+        -webkit-transition: all .3s ease-in-out;
+        transition: all .01s ease-in-out;
+        background: rgba(173,216,230, .3);
+        cursor: pointer;
+        border: none;
+        padding: 4px 14px;
+        opacity: 0;
+        float: right;
+        height: 100%;
+        right: 0;
+        position: absolute;
+        font-size: 16px
+    }
+
+    #mainContent ul li:hover button {
+        opacity: 1
+    }
+
+#mainPart {
+    position: relative;
+    margin-top: 10px;
+    background: rgba(173,216,230, .1);
+    padding: 10px 20px 10px;
+    border-radius: 4px;
+    min-height: 100%;
+    margin-bottom: 25px
+}
+
+    #mainPart:after {
+        width: 100%;
+        position: absolute;
+        bottom: -5px;
+        left: 6px;
+        top: 4px;
+        content: "";
+        border-radius: 4px;
+        z-index: -1;
+        background: #f6fbfe;
+    }
+
+    #mainPart:before {
+        width: 100%;
+        position: absolute;
+        left: 11px;
+        top: 4px;
+        bottom: -10px;
+        content: "";
+        border-radius: 4px;
+        z-index: -1;
+        background: #f6fbfe;
+    }
+
+#submitBtn {
+    border: .5px solid rgba(0,0,0, .1);
+    height: 50px;
+    display: inline-block;
+    font-size: 30px;
+    color: gray;
+}
+
+    #submitBtn.active {
+        background: lightblue;
+    }
+
+#mainPartOuter {
+    background: white;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+
+.checkbox:checked + label {
+    text-decoration: line-through;
+    opacity: .5;
+}
+
+.checked {
+    filter: brightness(0.85);
+    transition: all 0.3s;
+}
+
+.checkbox {
+    margin-right: 10px;
+}
+
+#mainPartIn {
+    margin-top: 10px
+}
+
+p.subjectslength {
+    display: block;
+    clear: both;
+    margin-top: 55px;
+}
+
+.clearBtn {
+    bottom: 10px;
+    text-align: end;
+   
+}
+
+    .clearBtn button {
+        background: white;
+        padding: 5px 10px;
+        font-size: 15px;
+        border-radius: 2px;
+        border: .5px solid lightblue;
+        transition: all .3s ease
+    }
+
+        .clearBtn button:hover {
+            border: .5px solid rgba(0,0,255, .4);
+        }
+
+
+/*.checkbox,.subDiv{position: relative;} */
+
+/* li flex style */
+#mainContent ul li.flex-container {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-size: 16px;
+    margin: 10px auto;
+    border-radius: 2px;
+    background: rgba(173,216,230, .3);
+    transition: all .3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: stretch
+}
+
+input[type=checkbox] {
+    margin-left: 20px;
+    width: 18px;
+    height: 18px;
+}
+
+input[type="checkbox"] + label.subDiv {
+    max-width: 230px;
+    text-align: left;
+    margin-left: 10px;
+}
+
+:focus {
+    outline: none;
+}
+
+
+
+/* transition */
+.slide-fade-enter-active {
+    transition: all .3s ease;
+}
+
+.slide-fade-leave-active {
+    transition: all .01s ease-in;
+}
+
+.slide-fade-enter
+/* .slide-fade-leave-active below version 2.1.8 */ {
+    transform: translateX(10px);
+    opacity: 0;
+}
+
+.slide-fade-leave-to {
+    opacity: 0;
+}

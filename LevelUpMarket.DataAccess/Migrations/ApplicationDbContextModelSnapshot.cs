@@ -22,6 +22,21 @@ namespace LevelUpMarket.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("GameGender", b =>
+                {
+                    b.Property<int>("GamesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GendersId")
+                        .HasColumnType("int");
+
+                    b.HasKey("GamesId", "GendersId");
+
+                    b.HasIndex("GendersId");
+
+                    b.ToTable("GameGenders", (string)null);
+                });
+
             modelBuilder.Entity("GamePlateforme", b =>
                 {
                     b.Property<int>("GamesId")
@@ -35,6 +50,36 @@ namespace LevelUpMarket.Migrations
                     b.HasIndex("PlateformesId");
 
                     b.ToTable("GamePlateforme", (string)null);
+                });
+
+            modelBuilder.Entity("GameSubtitle", b =>
+                {
+                    b.Property<int>("GamesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SubtitlesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("GamesId", "SubtitlesId");
+
+                    b.HasIndex("SubtitlesId");
+
+                    b.ToTable("GameSubtitle", (string)null);
+                });
+
+            modelBuilder.Entity("GameVoiceLanguage", b =>
+                {
+                    b.Property<int>("GamesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VoiceLanguagesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("GamesId", "VoiceLanguagesId");
+
+                    b.HasIndex("VoiceLanguagesId");
+
+                    b.ToTable("GameVoiceLanguages", (string)null);
                 });
 
             modelBuilder.Entity("LevelUpMarket.Models.Category", b =>
@@ -145,10 +190,6 @@ namespace LevelUpMarket.Migrations
                     b.Property<int>("DeveloperId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Genres")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(200)");
-
                     b.Property<string>("Intro")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -170,19 +211,28 @@ namespace LevelUpMarket.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Subtitles")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("VoiceLanguages")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(200)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("DeveloperId");
 
                     b.ToTable("Games");
+                });
+
+            modelBuilder.Entity("LevelUpMarket.Models.Gender", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Genders");
                 });
 
             modelBuilder.Entity("LevelUpMarket.Models.Image", b =>
@@ -193,12 +243,15 @@ namespace LevelUpMarket.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<byte[]>("Bytes")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
                     b.Property<int>("GameId")
                         .HasColumnType("int");
+
+                    b.Property<int>("ImageType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -228,6 +281,23 @@ namespace LevelUpMarket.Migrations
                     b.ToTable("Plateformes");
                 });
 
+            modelBuilder.Entity("LevelUpMarket.Models.Subtitle", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Subtitles");
+                });
+
             modelBuilder.Entity("LevelUpMarket.Models.Video", b =>
                 {
                     b.Property<int>("Id")
@@ -237,6 +307,9 @@ namespace LevelUpMarket.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("GameId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.Property<string>("URL")
@@ -250,6 +323,38 @@ namespace LevelUpMarket.Migrations
                     b.ToTable("Video");
                 });
 
+            modelBuilder.Entity("LevelUpMarket.Models.VoiceLanguage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("VoiceLanguages");
+                });
+
+            modelBuilder.Entity("GameGender", b =>
+                {
+                    b.HasOne("LevelUpMarket.Models.Game", null)
+                        .WithMany()
+                        .HasForeignKey("GamesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LevelUpMarket.Models.Gender", null)
+                        .WithMany()
+                        .HasForeignKey("GendersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("GamePlateforme", b =>
                 {
                     b.HasOne("LevelUpMarket.Models.Game", null)
@@ -261,6 +366,36 @@ namespace LevelUpMarket.Migrations
                     b.HasOne("LevelUpMarket.Models.Plateforme", null)
                         .WithMany()
                         .HasForeignKey("PlateformesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("GameSubtitle", b =>
+                {
+                    b.HasOne("LevelUpMarket.Models.Game", null)
+                        .WithMany()
+                        .HasForeignKey("GamesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LevelUpMarket.Models.Subtitle", null)
+                        .WithMany()
+                        .HasForeignKey("SubtitlesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("GameVoiceLanguage", b =>
+                {
+                    b.HasOne("LevelUpMarket.Models.Game", null)
+                        .WithMany()
+                        .HasForeignKey("GamesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LevelUpMarket.Models.VoiceLanguage", null)
+                        .WithMany()
+                        .HasForeignKey("VoiceLanguagesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

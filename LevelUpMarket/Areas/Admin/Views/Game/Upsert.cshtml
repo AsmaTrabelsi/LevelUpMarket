@@ -8,7 +8,7 @@
         </div>
         <div class="drag-container mb-3">
             <div class="drag-drop">
-                <input type="file" id="upload-button" multiple accept="image/*"  />
+                <input type="file" asp-for="Game.Images" id="upload-button"name="files" multiple accept="image/*" class="form-control" />
                 <label for="upload-button" class="labelButton">
                     <i class="bi bi-cloud-arrow-up-fill"></i>&nbsp; Choose Or Drop Photos
                 </label>
@@ -28,7 +28,7 @@
             </div>
             <div class="mb-3">
                 <label asp-for="Game.ReleaseDate"></label>
-                <input asp-for="Game.ReleaseDate" class="form-control" />
+                <input type="date" required pattern="\d{4}-\d{2}-\d{2}" asp-for="Game.ReleaseDate" class="form-control" />
                 <span asp-validation-for="Game.ReleaseDate" class="text-danger"></span>
             </div>
             <div class="mb-3">
@@ -40,11 +40,11 @@
             </div>
             <div class="row">
                 <div class="mb-3 col-6">
-                    <input type="checkbox" id="offline" name="offline" asp-for="Game.OfflinePlayEnable">
+                    <input type="checkbox" id="offline"  asp-for="Game.OfflinePlayEnable">
                     <label asp-for="Game.OfflinePlayEnable"></label>
                 </div>
                 <div class="mb-3 col-6">
-                    <input type="checkbox" id="available" name="available" asp-for="Game.Available">
+                    <input type="checkbox" id="available" asp-for="Game.Available">
                     <label asp-for="Game.Available"></label>
                 </div>
                 <div class="mb-3 ">
@@ -67,48 +67,36 @@
 
 
         <div class="mb-3 col-6">
-            <label asp-for="PlateformeList"></label>
-            <select asp-for="PlateformeList" asp-items="Model.PlateformeList" class="form-select">
+            <label asp-for="Game.Plateformes"></label>
+            <select asp-for="Game.Plateformes" asp-items="Model.PlateformeList" class="form-select">
                 <option disabled selected>--Select Plateforms--</option>
             </select>
-            <span asp-validation-for="PlateformeList" class="text-danger"></span>
-        </div>
-        <div class="mb-3 col-6">
-            <label asp-for="Game.Genres"></label>
-            <select asp-for="Game.Genres" class="form-control" multiple>
-                <option disabled selected>--Select option--</option>
-                @foreach (var gender in Enum.GetValues(typeof(Gender)))
-                {
-                    <option value="@gender">@gender.ToString()</option>
-                }
-            </select>
-            <span asp-validation-for="Game.Genres" class="text-danger"></span>
+            <span asp-validation-for="Game.Plateformes" class="text-danger"></span>
         </div>
 
+        <div class="mb-3 col-6">
+            <label asp-for="Game.Genders"></label>
+            <select asp-for="Game.Genders" asp-items="Model.GenderList" class="form-select">
+                <option disabled selected>--Select Genders--</option>
+            </select>
+            <span asp-validation-for="Game.Genders" class="text-danger"></span>
+        </div>
+       
 
         <div class="mb-3 col-6">
             <label asp-for="Game.VoiceLanguages"></label>
-            <select asp-for="Game.VoiceLanguages" class="form-control" multiple>
-                <option disabled selected>--Select Languages--</option>
-                @foreach (var voice in Enum.GetValues(typeof(Language)))
-                {
-                    <option value="@voice">@voice.ToString()</option>
-                }
+            <select asp-for="Game.VoiceLanguages" asp-items="Model.VoiceLanguagesList" class="form-select">
+                <option disabled selected>--Select Genders--</option>
             </select>
             <span asp-validation-for="Game.VoiceLanguages" class="text-danger"></span>
         </div>
         <div class="mb-3 col-6">
             <label asp-for="Game.Subtitles"></label>
-            <select asp-for="Game.Subtitles" class="form-control" multiple>
-                <option disabled selected>--Select Languages--</option>
-                @foreach (var subtitle in Enum.GetValues(typeof(Language)))
-                {
-                    <option value="@subtitle">@subtitle.ToString()</option>
-                }
+            <select asp-for="Game.Subtitles" asp-items="Model.SubtitleList" class="form-select">
+                <option disabled selected>--Select Genders--</option>
             </select>
-            <span asp-validation-for="Game.SubtitleList" class="text-danger"></span>
+            <span asp-validation-for="Game.Subtitles" class="text-danger"></span>
         </div>
-
 
         <div class="col-12">
             @if (Model.Game != null && Model.Game.Id != 0)
@@ -120,7 +108,7 @@
             else
             {
                 <button onclick="return ValidateInput()" type="submit" class="btn btn-primary" style="width:150px">
-                    Create
+                    Next
                 </button>
             }
 
