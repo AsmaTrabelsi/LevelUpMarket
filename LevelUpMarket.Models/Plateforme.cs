@@ -14,7 +14,7 @@ namespace LevelUpMarket.Models
         [Required]
         public string Name { get; set; }
         //navigation properties
-        public virtual ICollection<Game> Games { get; set; }
+        public  ICollection<Game> Games { get; set; }
 
     }
 }

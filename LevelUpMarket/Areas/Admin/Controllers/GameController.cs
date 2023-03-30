@@ -78,6 +78,13 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
             else
             {
                 // update Game
+                gameVM.Game = _unitOfWork.Game.GetFirstOrDefault(u => u.Id == id, includeProperties: "Plateformes,Subtitles,VoiceLanguages,Genders");
+                gameVM.SelectedGenders = (IEnumerable<string>)gameVM.Game.Genders.Select(g => g.Id.ToString());
+                gameVM.SelectedSubtitle = (IEnumerable<string>)gameVM.Game.Subtitles.Select(g => g.Id.ToString());
+                gameVM.SelectedVoice = (IEnumerable<string>)gameVM.Game.VoiceLanguages.Select(g => g.Id.ToString());
+                gameVM.SelectedPlateformes = (IEnumerable<string>)gameVM.Game.Plateformes.Select(g => g.Id.ToString());
+
+                return View(gameVM);
             }
            
             return View(gameVM);
@@ -87,10 +94,21 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
         public  IActionResult Upsert(GameVM gameVm,List<IFormFile> files)
         {
             
+            
             if (ModelState.IsValid)
             {
                 string wwwRootPath = _hostEnvironment.WebRootPath;
-                if(files != null && files.Count>0)
+               if(gameVm.Game.Id == 0)
+                {
+                    gameVm.Game.Plateformes = new List<Plateforme>();
+
+                    gameVm.Game.Subtitles = new List<Subtitle>();
+
+                    gameVm.Game.VoiceLanguages = new List<VoiceLanguage>();
+                    gameVm.Game.Genders = new List<Gender>();
+                }
+
+                if (files != null && files.Count>0)
                 {
                     gameVm.Game.Images = new List<Image>();
                     foreach (var file in files)
@@ -121,6 +139,17 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
                             string fileName = Guid.NewGuid().ToString();
                             var uploads = Path.Combine(wwwRootPath, @"images/Games");
                             var extension = Path.GetExtension(file.FileName);
+                            if(gameVm.Game.Images != null)
+                            {
+                                foreach(var img in gameVm.Game.Images)
+                                {
+                                    var oldImagePath = Path.Combine(wwwRootPath,img.ImageUrl);
+                                    if (System.IO.File.Exists(oldImagePath))
+                                    {
+                                        System.IO.File.Delete(oldImagePath);
+                                    }
+                                }
+                            }
                             using (var stream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create)) 
                             {
                                 file.CopyTo(stream);
@@ -128,12 +157,45 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
 
                             gameVm.Game.Images.Add(new Image { Name = fileName, ImageUrl= @"images/Games/" + fileName+extension, ImageType= type});
                         }
-                 
-              
                     }
+                   
 
                 }
-                _unitOfWork.Game.Add(gameVm.Game);
+                foreach (var id in gameVm.SelectedPlateformes)
+                {
+                    var plateforme = _unitOfWork.Plateforme.GetFirstOrDefault(p => p.Id.ToString().Equals(id));
+
+                    gameVm.Game.Plateformes.Add(plateforme);
+
+                }
+                foreach (var id in gameVm.SelectedGenders)
+                {
+                    var gender = _unitOfWork.Gender.GetFirstOrDefault(p => p.Id.ToString().Equals(id));
+
+                    gameVm.Game.Genders.Add(gender);
+
+                }
+                foreach (var id in gameVm.SelectedSubtitle)
+                {
+                    var subtitle = _unitOfWork.Subtitle.GetFirstOrDefault(p => p.Id.ToString().Equals(id));
+                    gameVm.Game.Subtitles.Add(subtitle);
+
+                }
+                foreach (var id in gameVm.SelectedVoice)
+                {
+                    var voice = _unitOfWork.VoiceLanguage.GetFirstOrDefault(p => p.Id.ToString().Equals(id));
+                    gameVm.Game.VoiceLanguages.Add(voice);
+
+                }
+                if(gameVm.Game.Id == 0)
+                {
+                    _unitOfWork.Game.Add(gameVm.Game);
+                }
+                else
+                {
+                    _unitOfWork.Game.Update(gameVm.Game);
+
+                }
                 _unitOfWork.Save();
                 TempData["success"] = "Game has created successfuly";
                 return RedirectToAction("Index");
@@ -244,11 +306,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
         public IActionResult GetAll()
 
         {
-            var options = new JsonSerializerOptions
-            {
-                ReferenceHandler = ReferenceHandler.Preserve,
-                // other options as needed
-            };
+            
             var gameList = _unitOfWork.Game.GetAll(includeProperties: "Images,Developer");
             
             return Json(new {data = gameList});
