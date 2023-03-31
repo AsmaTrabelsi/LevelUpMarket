@@ -7,6 +7,7 @@
             <h2 class="text-primary">@(Model.Game != null && Model.Game.Id != 0 ? "Edit " + Model.Game.Name : "Add New Game") </h2>
         </div>
         <input asp-for="Game.Id" hidden />
+        <input asp-for="Game.Images" hidden />
         <div class="drag-container mb-3">
             <div class="drag-drop">
                 <input type="file" asp-for="Game.Images" id="upload-button" name="files" multiple accept="image/*" class="form-control" />
@@ -14,7 +15,19 @@
                     <i class="bi bi-cloud-arrow-up-fill"></i>&nbsp; Choose Or Drop Photos
                 </label>
                 <div id="error"></div>
-                <div id="image-display"></div>
+                <div id="image-display">
+                    @if(Model.Game.Images != null){
+                        foreach (var img in Model.Game.Images){
+                            <figure>
+                                <img src="/@img.ImageUrl"/>
+
+                            <figcaption style="width:100px">@Model.Game.Name</figcaption>
+                            </figure>
+ 
+                            
+                        }
+                    }
+                </div>
             </div>
 
         </div>
@@ -70,7 +83,7 @@
         <div class="mb-3 col-6">
             <label asp-for="Game.Plateformes"></label>
             <select asp-for="SelectedPlateformes" asp-items="Model.PlateformeList" class="form-select">
-                <option disabled selected>--Select Plateforms--</option>
+                <option disabled >--Select Plateforms--</option>
             </select>
             <span asp-validation-for="Game.Plateformes" class="text-danger"></span>
         </div>
@@ -78,7 +91,7 @@
         <div class="mb-3 col-6">
             <label asp-for="Game.Genders"></label>
             <select asp-for="SelectedGenders" asp-items="Model.GenderList" class="form-select">
-                <option disabled selected>--Select Genders--</option>
+                <option disabled >--Select Genders--</option>
             </select>
             <span asp-validation-for="Game.Genders" class="text-danger"></span>
         </div>
@@ -87,14 +100,14 @@
         <div class="mb-3 col-6">
             <label asp-for="Game.VoiceLanguages"></label>
             <select asp-for="SelectedVoice" asp-items="Model.VoiceLanguagesList" class="form-select">
-                <option disabled selected>--Select Genders--</option>
+                <option disabled >--Select Genders--</option>
             </select>
             <span asp-validation-for="Game.VoiceLanguages" class="text-danger"></span>
         </div>
         <div class="mb-3 col-6">
             <label asp-for="Game.Subtitles"></label>
             <select asp-for="SelectedSubtitle" asp-items="Model.SubtitleList" class="form-select">
-                <option disabled selected>--Select Genders--</option>
+                <option disabled >--Select Genders--</option>
             </select>
             <span asp-validation-for="Game.Subtitles" class="text-danger"></span>
         </div>

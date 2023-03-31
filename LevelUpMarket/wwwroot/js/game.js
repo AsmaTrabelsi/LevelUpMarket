@@ -65,7 +65,7 @@ function loadDataTable() {
                         <a href="/Admin/Game/Upsert?id=${data}"class="btn" >
                             <i class="bi bi-pencil-square fs-4"></i> 
                         </a>
-                        <a class="btn" >
+                        <a class="btn" onClick=Delete('/Admin/Game/Delete/+${data}') >
                             <i class="bi bi-trash-fill fs-4" ></i> 
                         </a>
                    </div>
@@ -80,4 +80,30 @@ function loadDataTable() {
     });
 }
 
+function Delete(url) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                success: function (data) {
+                    if (data.success) {
+                        dataTable.ajax.reload();
+                        toastr.success(data.message);
+                    } else {
+                        toastr.error(data.message);
+                    }
+                }
 
+            })
+        }
+    })
+}

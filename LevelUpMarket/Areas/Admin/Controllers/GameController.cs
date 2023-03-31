@@ -78,7 +78,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
             else
             {
                 // update Game
-                gameVM.Game = _unitOfWork.Game.GetFirstOrDefault(u => u.Id == id, includeProperties: "Plateformes,Subtitles,VoiceLanguages,Genders");
+                gameVM.Game = _unitOfWork.Game.GetFirstOrDefault(u => u.Id == id, includeProperties: "Images,Plateformes,Subtitles,VoiceLanguages,Genders");
                 gameVM.SelectedGenders = (IEnumerable<string>)gameVM.Game.Genders.Select(g => g.Id.ToString());
                 gameVM.SelectedSubtitle = (IEnumerable<string>)gameVM.Game.Subtitles.Select(g => g.Id.ToString());
                 gameVM.SelectedVoice = (IEnumerable<string>)gameVM.Game.VoiceLanguages.Select(g => g.Id.ToString());
@@ -94,11 +94,9 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
         public  IActionResult Upsert(GameVM gameVm,List<IFormFile> files)
         {
             
-            
             if (ModelState.IsValid)
             {
-                string wwwRootPath = _hostEnvironment.WebRootPath;
-               if(gameVm.Game.Id == 0)
+               if(gameVm.Game.Plateformes == null)
                 {
                     gameVm.Game.Plateformes = new List<Plateforme>();
 
@@ -107,7 +105,9 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
                     gameVm.Game.VoiceLanguages = new List<VoiceLanguage>();
                     gameVm.Game.Genders = new List<Gender>();
                 }
-
+                
+                // upload files
+                string wwwRootPath = _hostEnvironment.WebRootPath;
                 if (files != null && files.Count>0)
                 {
                     gameVm.Game.Images = new List<Image>();
@@ -115,20 +115,21 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
                     {
                         if(file != null)
                         {
+                            // set image type
                             ImageType type;
-                            if (file.FileName.ToLower().Contains(ImageType.INIT.ToString().ToLower()))
+                            if (file.FileName.ToLower().Contains("init"))
                             {
                                 type = ImageType.INIT;
                             }
-                            else if (file.FileName.ToLower().Contains(ImageType.BG_STORE.ToString().ToLower()))
+                            else if (file.FileName.ToLower().Contains("store"))
                             {
                                 type = ImageType.BG_STORE;
                             }
-                            else if (file.FileName.ToLower().Contains(ImageType.BG_STORY.ToString().ToLower()))
+                            else if (file.FileName.ToLower().Contains("story"))
                             {
-                                type = ImageType.BG_STORE;
+                                type = ImageType.BG_STORY;
                             }
-                            else if (file.FileName.ToLower().Contains(ImageType.POSTER.ToString().ToLower()))
+                            else if (file.FileName.ToLower().Contains("poster"))
                             {
                                 type = ImageType.POSTER;
                             }
@@ -149,44 +150,65 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
                                         System.IO.File.Delete(oldImagePath);
                                     }
                                 }
-                            }
-                            using (var stream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create)) 
-                            {
-                                file.CopyTo(stream);
-                            }
+                                using (var stream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                                {
+                                    file.CopyTo(stream);
+                                }
 
-                            gameVm.Game.Images.Add(new Image { Name = fileName, ImageUrl= @"images/Games/" + fileName+extension, ImageType= type});
+                                gameVm.Game.Images.Add(new Image { Name = fileName, ImageUrl = @"images/Games/" + fileName + extension, ImageType = type });
+                            }
+                          
                         }
                     }
                    
-
                 }
+               
+                // retrieve selected Plateformes
                 foreach (var id in gameVm.SelectedPlateformes)
                 {
                     var plateforme = _unitOfWork.Plateforme.GetFirstOrDefault(p => p.Id.ToString().Equals(id));
+                    
 
-                    gameVm.Game.Plateformes.Add(plateforme);
-
+                    bool isExist = gameVm.Game.Plateformes.Any(p => p.Id.ToString().Equals(id));
+                    if (isExist == false)
+                    {
+                        gameVm.Game.Plateformes.Add(plateforme);
+                    }
                 }
+                // retrieve selected Genders
                 foreach (var id in gameVm.SelectedGenders)
                 {
                     var gender = _unitOfWork.Gender.GetFirstOrDefault(p => p.Id.ToString().Equals(id));
-
-                    gameVm.Game.Genders.Add(gender);
+                    bool isExist = gameVm.Game.Genders.Any(g => g.Id.ToString().Equals(id));
+                    if (isExist == false)
+                    {
+                        gameVm.Game.Genders.Add(gender);
+                    }
+                    
 
                 }
+                // retrieve selected Subtitles
                 foreach (var id in gameVm.SelectedSubtitle)
                 {
                     var subtitle = _unitOfWork.Subtitle.GetFirstOrDefault(p => p.Id.ToString().Equals(id));
-                    gameVm.Game.Subtitles.Add(subtitle);
+                    bool isExist = gameVm.Game.Subtitles.Any(s => s.Id.ToString().Equals(id));
+                    if (isExist == false)
+                    {
+                        gameVm.Game.Subtitles.Add(subtitle);
+                    }
 
                 }
+                // retrieve selected Voice Languages
                 foreach (var id in gameVm.SelectedVoice)
                 {
+                    
                     var voice = _unitOfWork.VoiceLanguage.GetFirstOrDefault(p => p.Id.ToString().Equals(id));
-                    gameVm.Game.VoiceLanguages.Add(voice);
+                    bool isExist = gameVm.Game.VoiceLanguages.Any(v => v.Id.ToString().Equals(id));
+                        gameVm.Game.VoiceLanguages.Add(voice);
+                    
 
                 }
+
                 if(gameVm.Game.Id == 0)
                 {
                     _unitOfWork.Game.Add(gameVm.Game);
@@ -272,35 +294,8 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
             return View(gameVm);
 
         }
-        public IActionResult Delete(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            var game = _unitOfWork.Game.GetFirstOrDefault(x => x.Id == id);
-            if (game == null)
-            {
-                return NotFound();
-            }
-
-            return View(game);
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeletePost(int? id)
-        {
-            var game = _unitOfWork.Game.GetFirstOrDefault(x => x.Id == id);
-            if (game == null)
-            {
-                return NotFound();
-            }
-            _unitOfWork.Game.Remove(game);
-            _unitOfWork.Save();
-            TempData["success"] = "category has deleted successfuly";
-            return RedirectToAction("Index");
-
-        }
+     
+        
         #region API CALLS
         [HttpGet]
         public IActionResult GetAll()
@@ -310,6 +305,27 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
             var gameList = _unitOfWork.Game.GetAll(includeProperties: "Images,Developer");
             
             return Json(new {data = gameList});
+        }
+        [HttpDelete]
+        public IActionResult DeletePost(int? id)
+        {
+            var game = _unitOfWork.Game.GetFirstOrDefault(x => x.Id == id);
+            if (game == null)
+            {
+                return Json(new { success = false, message = "Error while deleting" });
+            }
+            foreach (var img in game.Images)
+            {
+                var oldImagePath = Path.Combine(_hostEnvironment.WebRootPath, img.ImageUrl);
+                if (System.IO.File.Exists(oldImagePath))
+                {
+                    System.IO.File.Delete(oldImagePath);
+                }
+            }
+            _unitOfWork.Game.Remove(game);
+            _unitOfWork.Save();
+            return Json(new { success = true, message = "Delete Successful" });
+
         }
         #endregion
     }

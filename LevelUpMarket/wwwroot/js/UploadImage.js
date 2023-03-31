@@ -21,7 +21,7 @@ const fileHandler = (file, name, type) => {
         let img = document.createElement("img");
         img.src = reader.result;
         imageContainer.appendChild(img);
-        imageContainer.innerHTML += `<figcaption>${name}</figcaption>`;
+        imageContainer.innerHTML += `<figcaption style="width:100px">${name}</figcaption>`;
         imageDisplay.appendChild(imageContainer);
     };
 };
