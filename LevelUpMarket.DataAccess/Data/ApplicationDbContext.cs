@@ -20,6 +20,7 @@ namespace LevelUpMarket.Data
 
         public DbSet<Game> Games { get; set; }
         public DbSet<Image> Images { get; set; }
+        public DbSet<Video> Videos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -37,6 +38,11 @@ namespace LevelUpMarket.Data
             // relation one to many - game and video - 
             modelBuilder.Entity<Game>()
                 .HasMany(g => g.Videos)
+                .WithOne(i => i.Game)
+                .HasForeignKey(i => i.GameId);
+            // relation one to many - game and characters - 
+            modelBuilder.Entity<Game>()
+                .HasMany(g => g.Characters)
                 .WithOne(i => i.Game)
                 .HasForeignKey(i => i.GameId);
             // relation many to many - game and subtitle - 

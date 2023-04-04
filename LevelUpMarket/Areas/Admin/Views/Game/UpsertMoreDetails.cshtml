@@ -1,122 +1,96 @@
-﻿@model LevelUpMarket.Models.ViewModel.GameVM
-
-<form method="post" asp-action="UpsertMoreDeatils" enctype="multipart/form-data">
-    <input asp-for="Game.Id" hidden />
-    <div class="border p-3 mt-4 row">
-        <div class="row pb-2">
-            <h2 class="text-primary">@(Model.Game != null && Model.Game.Id != 0 ? "Edit " + Model.Game.Name : "Add New Game") </h2>
-        </div>
-        <div id="mainContent">
-                <div id="mainPart">
-                    <div id="mainPartIn">
-                        <form action="">
-                       
-                        <select class="frmInpt" v-model="addSub" v-bind:class="addSub" style="height:52px">
-                                <option disabled selected>--Select Video Type--</option>
-                                @foreach (var type in Enum.GetValues(typeof(VideoType)))
-                                {
-                                    <option value="@type">@type.ToString().ToLower()</option>
-                                }
-                            </select>
-                      
-                <div class="col6">
-                            <input class="frmInpt" type="text" v-model="addSub" v-bind:class="addSub"
-                                   placeholder="Add Video Url ....">
-                            <button type="submit" id="submitBtn" v-bind:class="{active:addSub}">+</button>
+﻿@model LevelUpMarket.Models.Game
+<div class="row">
+ <input asp-for="Id" id="gameId" hidden />
+<div id="mainContent" class="col-6">
+     <div id="mainPart">
+        <legend class="p-2">Add videos</legend>
+            <form id="add-task-form">
+                    <div class="list-input-box">
+                        <div class="col-4">
+                    <select class="form-select" id="video-type-select">
+                        <option disabled selected>--Select Video Type--</option>
+                        @foreach (var type in Enum.GetValues(typeof(VideoType)))
+                        {
+                            <option value="@type">@type.ToString().ToLower()</option>
+                        }
+                    </select>
                         </div>
-                        </form>
-                        <br /><br />
-                        <p v-if="subjects.length>0" class="subjectslength">Total {{subjects.length}} subject<span v-if="subjects.length>1">s</span></p>
-
-                        <ul>
-                            <transition-group name="slide-fade">
-                                <li v-for="(subject, index) in subjects" :class="{checked: subject.checked}" :key="index" class="flex-container"><input type="checkbox" class="checkbox" id="subject.id" v-model="subject.checked"><label for="checkbox" :for="subject.id" class="subDiv"> {{subject.sub}}</label><button type="button" class="btn-dlt" v-on:click="subjects.splice(index,1)">x</button></li>
-                            </transition-group>
-                        </ul>
-                        <div class="clearBtn"> <button type="button" v-if="subjects.length>0" v-on:click="clearList" style="width:100px;margin:auto;text-align:center">Clear List</button></div>
+              <div class="col-8">
+                <input type="text" class="frmInpt" placeholder="Add url" id="add-url-input">
+                        <button class="btn-sub" type="submit" onclick="addVideo()" id="add-video-submit">+</button>
                     </div>
-                </div>
-            
-        </div>
-
-        <div class="">
-            <div class="mb-3">
-                <input placeholder="Name" asp-for="Game.Name" class="form-control" />
-                <span asp-validation-for="Game.Name" class="text-danger"></span>
+                    </div>
+                </form>
+        
+        <div class="todo-container todo-task-list">
+            <div id="todo-tasks">
+               
+                <!--<div class="list-input-box" id="listCharacter">
+                  <input type="text" class="input-filed" placeholder="Add new task" readonly>
+                  <button class="btn-sub">delete</button>
+                </div> -->
             </div>
-            <div class="mb-3">
-                <input placeholder="Price" asp-for="Game.Price" class="form-control" />
-                <span asp-validation-for="Game.Price" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="Game.ReleaseDate"></label>
-                <input type="date" required pattern="\d{4}-\d{2}-\d{2}" asp-for="Game.ReleaseDate" class="form-control" />
-                <span asp-validation-for="Game.ReleaseDate" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="Game.DeveloperId"></label>
-                <select asp-for="Game.DeveloperId" asp-items="Model.DeveloperList" class="form-select">
-                    <option disabled selected>--Select Developer--</option>
-                </select>
-                <span asp-validation-for="Game.DeveloperId" class="text-danger"></span>
-            </div>
-            <div class="row">
-                <div class="mb-3 col-6">
-                    <input type="checkbox" id="offline" asp-for="Game.OfflinePlayEnable">
-                    <label asp-for="Game.OfflinePlayEnable"></label>
-                </div>
-                <div class="mb-3 col-6">
-                    <input type="checkbox" id="available" asp-for="Game.Available">
-                    <label asp-for="Game.Available"></label>
-                </div>
-                
-            </div>
-
-
-        </div>
-
-
-
-
-
-        <div class="mb-3 col-6">
-            <label asp-for="Game.Plateformes"></label>
-            <select asp-for="Game.Plateformes" asp-items="Model.PlateformeList" class="form-select">
-                <option disabled selected>--Select Plateforms--</option>
-            </select>
-            <span asp-validation-for="Game.Plateformes" class="text-danger"></span>
-        </div>
-
-
-
-
-        <div class="col-12">
-            @if (Model.Game != null && Model.Game.Id != 0)
-            {
-                <button type="submit" class="btn btn-primary" style="width:150px">
-                    Update
-                </button>
-            }
-            else
-            {
-                <button onclick="return ValidateInput()" type="submit" class="btn btn-primary" style="width:150px">
-                    Next
-                </button>
-            }
-
-            <a asp-controller="Game" asp-action="Index" class="btn btn-secondary" style="width:150px">
-                Back to List
-            </a>
         </div>
     </div>
-    <script src="~/js/game.js"></script>
-</form>
+</div>
+
+
+
+<div id="mainContent" class="col-6">
+    <div id="mainPart">
+        <legend class="p-2">Add Character</legend>
+        <form id="add-character-form" enctype="multipart/form-data">
+            <div class="mb-3">
+                <input placeholder="Name"  class="form-control" />
+            </div>
+            <div class="mb-3">
+                <input placeholder="Description" class="form-control" />
+            </div>
+            <div mb-3>
+                <select class="form-select" id="add-type-select">
+                    <option disabled selected>--Select Character Type--</option>
+                    @foreach (var type in Enum.GetValues(typeof(CharacterType)))
+                    {
+                        <option value="@type">@type.ToString().ToLower()</option>
+                    }
+                </select>
+            </div>
+            <div class="mb-3 mt-3">
+
+                <input type="file" id="file" name="file" size="50" class="form-control" />
+            </div>
+            <div >
+                <input class="form-check-input" type="checkbox" id="scales" name="scales" checked>
+                <label>Is Main Character</label>
+            </div>
+                <div class="form-group d-flex justify-content-end">
+                    <input type="submit" value="Add" class="btn btn-primary px-5" />
+                </div>
+            
+        </form>
+
+        <div class="todo-container todo-task-list">
+            <div id="todo-tasks2">
+                <!--<div class="list-input-box">
+                  <input type="text" class="input-filed" placeholder="Add new task" readonly>
+                  <button class="btn-sub">delete</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+     </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/js/addVideos.js"></script>
+
+     
 
 @section Scripts
     {
     @{
         <partial name="_ValidationScriptsPartial" />
-        <script src="~/js/UploadImage.js"></script>
         <link rel="stylesheet" href="~/css/AddGame.css" asp-append-version="true" />
 
         

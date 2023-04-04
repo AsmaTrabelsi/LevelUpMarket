@@ -1,18 +1,9 @@
-﻿* {
-    box-sizing: border-box
-}
-
-button {
-    cursor: pointer;
-}
-
-#app {
-    margin-bottom: 30px;
-}
+﻿
 
 #mainContent {
     margin: 0 auto 120px;
     max-width: 100%;
+    width: 50%;
     position: relative;
 }
 
@@ -20,57 +11,24 @@ button {
     #mainContent .frmInpt {
         padding: 8px 12px;
         border-radius: 3px;
-        border: none;
-        width: 45%;
-        font-size: 20px;
-        border: .5px solid lightgray;
+        width: 80%;
+        font-size: 18px;
+        border: 1px solid #ced4da;
+        border-radius: 0.375rem;
         margin-bottom: 6px;
         margin-right: 20px;
         float: left;
-        line-height: 34px
+        height: 30px;
+        padding: 18px;
     }
 
     #mainContent input:focus {
         outline: none
     }
 
-#submitBtn {
-    background: rgba(173,216,230, .3);
-    cursor: pointer;
-    border: none;
-    padding: 1px 22px;
-    border-radius: 3px;
-    box-sizing: border-box;
-    float: left
-}
 
-#mainContent ul {
-    list-style: none;
-    margin: 0;
-    margin-top: 12px;
-    padding: 0;
-    margin-bottom: 70px;
-}
 
-    #mainContent ul li button {
-        border-radius: 4px;
-        -webkit-transition: all .3s ease-in-out;
-        transition: all .01s ease-in-out;
-        background: rgba(173,216,230, .3);
-        cursor: pointer;
-        border: none;
-        padding: 4px 14px;
-        opacity: 0;
-        float: right;
-        height: 100%;
-        right: 0;
-        position: absolute;
-        font-size: 16px
-    }
 
-    #mainContent ul li:hover button {
-        opacity: 1
-    }
 
 #mainPart {
     position: relative;
@@ -78,7 +36,7 @@ button {
     background: rgba(173,216,230, .1);
     padding: 10px 20px 10px;
     border-radius: 4px;
-    min-height: 100%;
+    min-height: 400px;
     margin-bottom: 25px
 }
 
@@ -106,75 +64,18 @@ button {
         background: #f6fbfe;
     }
 
-#submitBtn {
-    border: .5px solid rgba(0,0,0, .1);
-    height: 50px;
-    display: inline-block;
-    font-size: 30px;
-    color: gray;
-}
-
-    #submitBtn.active {
-        background: lightblue;
-    }
-
-#mainPartOuter {
-    background: white;
-    margin-top: 10px;
-    border-radius: 4px;
-}
-
-
-.checkbox:checked + label {
-    text-decoration: line-through;
-    opacity: .5;
-}
-
-.checked {
-    filter: brightness(0.85);
-    transition: all 0.3s;
-}
-
-.checkbox {
-    margin-right: 10px;
-}
 
 #mainPartIn {
     margin-top: 10px
 }
 
-p.subjectslength {
-    display: block;
-    clear: both;
-    margin-top: 55px;
-}
-
-.clearBtn {
-    bottom: 10px;
-    text-align: end;
-   
-}
-
-    .clearBtn button {
-        background: white;
-        padding: 5px 10px;
-        font-size: 15px;
-        border-radius: 2px;
-        border: .5px solid lightblue;
-        transition: all .3s ease
-    }
-
-        .clearBtn button:hover {
-            border: .5px solid rgba(0,0,255, .4);
-        }
 
 
-/*.checkbox,.subDiv{position: relative;} */
 
-/* li flex style */
-#mainContent ul li.flex-container {
-    padding-top: 12px;
-    padding-bottom: 12px;
+
+.flex-container {
+    padding-top: 1px;
+    padding-bottom: 1px;
     font-size: 16px;
     margin: 10px auto;
     border-radius: 2px;
@@ -189,39 +90,66 @@ p.subjectslength {
     align-content: stretch
 }
 
-input[type=checkbox] {
-    margin-left: 20px;
-    width: 18px;
-    height: 18px;
+
+
+
+
+
+
+
+
+/*2222222222222222222222222*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-input[type="checkbox"] + label.subDiv {
-    max-width: 230px;
-    text-align: left;
-    margin-left: 10px;
+
+
+.todo-container {
+    max-width: 600px;
+    width: 100%;
+    padding: 3px;
 }
 
-:focus {
+
+.list-input-box {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.input-filed {
+    border: 0;
+    height: 30px;
+    background-color:transparent;
+    margin: 0px;
+    width: 40%;
+    color: #495057;
+    padding: 20px;
+    font-size: 18px;
     outline: none;
 }
 
-
-
-/* transition */
-.slide-fade-enter-active {
-    transition: all .3s ease;
+.btn-sub {
+    width: 40px;
+    height: 37px;
+    padding: 0 3px;
+    border: none;
+    letter-spacing: 0;
+    color: #2196f3;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 700;
+    background: rgba(173,216,230, .3);
+    border-radius: 3px;
 }
 
-.slide-fade-leave-active {
-    transition: all .01s ease-in;
-}
-
-.slide-fade-enter
-/* .slide-fade-leave-active below version 2.1.8 */ {
-    transform: translateX(10px);
-    opacity: 0;
-}
-
-.slide-fade-leave-to {
-    opacity: 0;
+.todo-task-list {
+    margin-top: 30px;
 }

@@ -16,14 +16,15 @@ namespace LevelUpMarket.Models.ViewModel
         [ValidateNever]
         public IEnumerable<SelectListItem> DeveloperList { get; set; }
         [ValidateNever]
-        public IEnumerable<SelectListItem> PlateformeList { get; set; }
+        // public IEnumerable<SelectListItem> PlateformeList { get; set; }
+        public IEnumerable<Plateforme> PlateformeList { get; set; }
 
         [ValidateNever]
-        public IEnumerable<SelectListItem> VoiceLanguagesList { get; set; }
+        public IEnumerable<VoiceLanguage> VoiceLanguagesList { get; set; }
         [ValidateNever]
-        public IEnumerable<SelectListItem> SubtitleList { get; set; }
+        public IEnumerable<Subtitle> SubtitleList { get; set; }
         [ValidateNever]
-        public IEnumerable<SelectListItem> GenderList { get; set; }
+        public IEnumerable<Gender> GenderList { get; set; }
 
         public IEnumerable<string> SelectedPlateformes { get; set; }
         public IEnumerable<string> SelectedGenders { get; set; }

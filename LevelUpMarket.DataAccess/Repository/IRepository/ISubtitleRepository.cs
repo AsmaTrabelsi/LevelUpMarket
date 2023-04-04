@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace LevelUpMarket.DataAccess.Repository.IRepository
 {
-    public interface ISubtitleRepository : IRepository<Subtitle>
+    public interface IVideoRepository : IRepository<Video>
     {
-        void Update(Subtitle subtitle);
+        void Update(Video subtitle);
     }
 }

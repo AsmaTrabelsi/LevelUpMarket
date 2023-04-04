@@ -22,6 +22,7 @@ namespace LevelUpMarket.DataAccess.Repository
             Plateforme = new PlateformeRepository(_db);
             Subtitle = new SubtitleRepository(_db);
             Gender = new GenderRepository(_db);
+            Video = new VideoRepository(_db);
             VoiceLanguage = new VoiceLanguageRepository(_db);
         }
         public ICategoryRepository Category { get; private set; }
@@ -34,6 +35,8 @@ namespace LevelUpMarket.DataAccess.Repository
         public ISubtitleRepository Subtitle { get; private set; }
         public IVoiceLanguageRepository  VoiceLanguage { get; private set; }
         public IGenderRepository Gender { get; private set; }
+        public IVideoRepository Video { get; private set; }
+
 
 
 

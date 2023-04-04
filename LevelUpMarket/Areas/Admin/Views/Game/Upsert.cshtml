@@ -10,7 +10,7 @@
         <input asp-for="Game.Images" hidden />
         <div class="drag-container mb-3">
             <div class="drag-drop">
-                <input type="file" asp-for="Game.Images" id="upload-button" name="files" multiple accept="image/*" class="form-control" />
+                <input type="file" asp-for="Game.Images" id="upload-button" name="files" style="display: none;" multiple accept="image/*" class="form-control" />
                 <label asp-for="Game.Images" for="upload-button" class="labelButton">
                     <i class="bi bi-cloud-arrow-up-fill"></i>&nbsp; Choose Or Drop Photos
                 </label>
@@ -82,7 +82,9 @@
 
         <div class="mb-3 col-6">
             <label asp-for="Game.Plateformes"></label>
-            <select asp-for="SelectedPlateformes" asp-items="Model.PlateformeList" class="form-select">
+            <select asp-for="SelectedPlateformes"
+                    asp-items="@(new SelectList(Model.PlateformeList, nameof(Plateforme.Id), nameof(Plateforme.Name)))"
+                    class="form-select">
                 <option disabled >--Select Plateforms--</option>
             </select>
             <span asp-validation-for="Game.Plateformes" class="text-danger"></span>
@@ -90,23 +92,26 @@
 
         <div class="mb-3 col-6">
             <label asp-for="Game.Genders"></label>
-            <select asp-for="SelectedGenders" asp-items="Model.GenderList" class="form-select">
+            <select asp-for="SelectedGenders" asp-items="@(new SelectList(Model.GenderList, nameof(Gender.Id), nameof(Gender.Name)))" class="form-select">
                 <option disabled >--Select Genders--</option>
             </select>
             <span asp-validation-for="Game.Genders" class="text-danger"></span>
         </div>
        
-
+        <input asp-for="PlateformeList" hidden></input>
+        <input asp-for="GenderList" hidden></input>
+        <input asp-for="SubtitleList" hidden></input>
+        <input asp-for="VoiceLanguagesList" hidden></input>
         <div class="mb-3 col-6">
             <label asp-for="Game.VoiceLanguages"></label>
-            <select asp-for="SelectedVoice" asp-items="Model.VoiceLanguagesList" class="form-select">
+            <select asp-for="SelectedVoice" asp-items="@(new SelectList(Model.VoiceLanguagesList, nameof(VoiceLanguage.Id), nameof(VoiceLanguage.Name)))" class="form-select">
                 <option disabled >--Select Genders--</option>
             </select>
             <span asp-validation-for="Game.VoiceLanguages" class="text-danger"></span>
         </div>
         <div class="mb-3 col-6">
             <label asp-for="Game.Subtitles"></label>
-            <select asp-for="SelectedSubtitle" asp-items="Model.SubtitleList" class="form-select">
+            <select asp-for="SelectedSubtitle" asp-items="@(new SelectList(Model.SubtitleList, nameof(Subtitle.Id), nameof(Subtitle.Name)))" class="form-select">
                 <option disabled >--Select Genders--</option>
             </select>
             <span asp-validation-for="Game.Subtitles" class="text-danger"></span>

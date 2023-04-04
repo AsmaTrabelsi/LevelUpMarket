@@ -130,9 +130,6 @@ footer {
 }
 
 
-input[type="file"] {
-    display: none;
-}
 
 .labelButton {
     display: block;

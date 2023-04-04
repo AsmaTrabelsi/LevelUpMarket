@@ -17,6 +17,7 @@ namespace LevelUpMarket.DataAccess.Repository.IRepository
         ISubtitleRepository Subtitle { get; }
         IVoiceLanguageRepository VoiceLanguage { get; }
         IGenderRepository Gender { get; }
+        IVideoRepository Video { get; }
         void Save();
     }
 }

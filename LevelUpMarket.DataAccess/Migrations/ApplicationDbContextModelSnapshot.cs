@@ -320,7 +320,7 @@ namespace LevelUpMarket.Migrations
 
                     b.HasIndex("GameId");
 
-                    b.ToTable("Video");
+                    b.ToTable("Videos");
                 });
 
             modelBuilder.Entity("LevelUpMarket.Models.VoiceLanguage", b =>

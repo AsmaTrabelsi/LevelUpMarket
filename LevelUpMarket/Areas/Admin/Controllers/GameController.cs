@@ -43,30 +43,11 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
                      Text = d.Name,
                      Value = d.Id.ToString()
                  }),
-                PlateformeList = _unitOfWork.Plateforme.GetAll().Select(
-              d => new SelectListItem
-              {
-                  Text = d.Name,
-                  Value = d.Id.ToString()
-              }),
-                SubtitleList = _unitOfWork.Subtitle.GetAll().Select(
-              s => new SelectListItem
-              {
-                  Text = s.Name,
-                  Value = s.Id.ToString()
-              }),
-                VoiceLanguagesList = _unitOfWork.VoiceLanguage.GetAll().Select(
-              v => new SelectListItem
-              {
-                  Text = v.Name,
-                  Value = v.Id.ToString()
-              }),
-                GenderList = _unitOfWork.Gender.GetAll().Select(
-              g => new SelectListItem
-              {
-                  Text = g.Name,
-                  Value = g.Id.ToString()
-              })
+                PlateformeList = _unitOfWork.Plateforme.GetAll(),
+              
+                SubtitleList = _unitOfWork.Subtitle.GetAll(),
+                VoiceLanguagesList = _unitOfWork.VoiceLanguage.GetAll(),
+                GenderList = _unitOfWork.Gender.GetAll()
 
             };
           
@@ -162,25 +143,27 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
                     }
                    
                 }
-               
+
+                gameVm.Game.Plateformes = new List<Plateforme>();
+
                 // retrieve selected Plateformes
                 foreach (var id in gameVm.SelectedPlateformes)
                 {
-                    var plateforme = _unitOfWork.Plateforme.GetFirstOrDefault(p => p.Id.ToString().Equals(id));
-                    
+                    var plateforme = gameVm.PlateformeList.FirstOrDefault(p => p.Id.ToString().Equals(id));
+                    // var plateforme = _unitOfWork.Plateforme.GetFirstOrDefault(p => p.Id.ToString().Equals(id));
 
-                    bool isExist = gameVm.Game.Plateformes.Any(p => p.Id.ToString().Equals(id));
-                    if (isExist == false)
+                    if (plateforme != null)
                     {
                         gameVm.Game.Plateformes.Add(plateforme);
                     }
                 }
+
+
                 // retrieve selected Genders
                 foreach (var id in gameVm.SelectedGenders)
                 {
-                    var gender = _unitOfWork.Gender.GetFirstOrDefault(p => p.Id.ToString().Equals(id));
-                    bool isExist = gameVm.Game.Genders.Any(g => g.Id.ToString().Equals(id));
-                    if (isExist == false)
+                    var gender = gameVm.GenderList.FirstOrDefault(p => p.Id.ToString().Equals(id));
+                    if (gender != null)
                     {
                         gameVm.Game.Genders.Add(gender);
                     }
@@ -190,9 +173,8 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
                 // retrieve selected Subtitles
                 foreach (var id in gameVm.SelectedSubtitle)
                 {
-                    var subtitle = _unitOfWork.Subtitle.GetFirstOrDefault(p => p.Id.ToString().Equals(id));
-                    bool isExist = gameVm.Game.Subtitles.Any(s => s.Id.ToString().Equals(id));
-                    if (isExist == false)
+                    var subtitle = gameVm.SubtitleList.FirstOrDefault(p => p.Id.ToString().Equals(id));
+                    if (subtitle != null)
                     {
                         gameVm.Game.Subtitles.Add(subtitle);
                     }
@@ -202,10 +184,13 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
                 foreach (var id in gameVm.SelectedVoice)
                 {
                     
-                    var voice = _unitOfWork.VoiceLanguage.GetFirstOrDefault(p => p.Id.ToString().Equals(id));
-                    bool isExist = gameVm.Game.VoiceLanguages.Any(v => v.Id.ToString().Equals(id));
+                    var voice = gameVm.VoiceLanguagesList.FirstOrDefault(p => p.Id.ToString().Equals(id));
+                    if(voice != null)
+                    {
                         gameVm.Game.VoiceLanguages.Add(voice);
-                    
+
+                    }
+
 
                 }
 
@@ -220,78 +205,27 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
                 }
                 _unitOfWork.Save();
                 TempData["success"] = "Game has created successfuly";
-                return RedirectToAction("Index");
+                return RedirectToAction("UpsertMoreDetails",gameVm.Game);
 
             }
             return View(gameVm);
 
         }
-        public IActionResult UpsertMoreDetails(int? id)
+        
+        public IActionResult UpsertMoreDetails(Game game)
         {
-            GameVM gameVM = new()
-            {
-                Game = new(),
-              
-                DeveloperList = _unitOfWork.Developer.GetAll().Select(
-                 d => new SelectListItem
-                 {
-                     Text = d.Name,
-                     Value = d.Id.ToString()
-                 }),
-                PlateformeList = _unitOfWork.Plateforme.GetAll().Select(
-              p => new SelectListItem
-              {
-                  Text = p.Name,
-                  Value = p.Id.ToString()
-              }),
-                SubtitleList = _unitOfWork.Subtitle.GetAll().Select(
-              s => new SelectListItem
-              {
-                  Text = s.Name,
-                  Value = s.Id.ToString()
-              }),
-                VoiceLanguagesList = _unitOfWork.VoiceLanguage.GetAll().Select(
-              v => new SelectListItem
-              {
-                  Text = v.Name,
-                  Value = v.Id.ToString()
-              }),
-                GenderList = _unitOfWork.Gender.GetAll().Select(
-              g => new SelectListItem
-              {
-                  Text = g.Name,
-                  Value = g.Id.ToString()
-              })
-
-            };
-
-            if (id == null || id == 0)
-            {
-                
-                return View(gameVM);
-            }
-            else
-            {
-                // update Game
-            }
-
-            return View(gameVM);
+            
+            return View(game);
         }
+
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpsertMoreDeatils(GameVM gameVm)
+        public async Task<IActionResult> UpsertMoreDeatils(IFormFile files)
         {
 
-            if (ModelState.IsValid)
-            {
-               
-               
-                _unitOfWork.Game.Add(gameVm.Game);
-                _unitOfWork.Save();
-                TempData["success"] = "Game has created successfuly";
-                return RedirectToAction("Index");
-            }
-            return View(gameVm);
+            return View();
 
         }
      
@@ -301,7 +235,6 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
         public IActionResult GetAll()
 
         {
-            
             var gameList = _unitOfWork.Game.GetAll(includeProperties: "Images,Developer");
             
             return Json(new {data = gameList});
@@ -326,6 +259,43 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
             _unitOfWork.Save();
             return Json(new { success = true, message = "Delete Successful" });
 
+        }
+        [HttpGet]
+        public IActionResult GetVideoByGame(int gameId)
+
+        {
+            var videoList = _unitOfWork.Video.GetAll().Where(c => c.GameId == gameId);
+            
+            return Json(new { data = videoList });
+        }
+        [HttpDelete]
+        public IActionResult DeleteVideoPost(int? id)
+        {
+            var video = _unitOfWork.Video.GetFirstOrDefault(c => c.Id == id);
+            if (video == null)
+            {
+                return Json(new { success = false, message = "Error while deleting" });
+            }
+
+            _unitOfWork.Video.Remove(video);
+            _unitOfWork.Save();
+            return Json(new { success = true, message = "Delete Successful" });
+
+        }
+        [HttpPost]
+        public IActionResult AddVideo(int gameId, string videoType, string url)
+
+        {
+            Enum.TryParse<VideoType>(videoType, out VideoType type);
+            Video video = new Video
+            {
+                Type = type,
+                URL = url,
+                GameId = gameId
+            };
+            _unitOfWork.Video.Add(video);
+            _unitOfWork.Save();
+            return Json(new { success = true, message = "added Successful" });
         }
         #endregion
     }
