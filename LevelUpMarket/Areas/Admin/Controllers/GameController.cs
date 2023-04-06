@@ -28,7 +28,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
 
             return View();
         }
-        
+
 
         //Get
         public IActionResult Upsert(int? id)
@@ -36,7 +36,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
             GameVM gameVM = new()
             {
                 Game = new(),
-               
+
                 DeveloperList = _unitOfWork.Developer.GetAll().Select(
                  d => new SelectListItem
                  {
@@ -44,16 +44,16 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
                      Value = d.Id.ToString()
                  }),
                 PlateformeList = _unitOfWork.Plateforme.GetAll(),
-              
+
                 SubtitleList = _unitOfWork.Subtitle.GetAll(),
                 VoiceLanguagesList = _unitOfWork.VoiceLanguage.GetAll(),
                 GenderList = _unitOfWork.Gender.GetAll()
 
             };
-          
+
             if (id == null || id == 0)
             {
-               
+
                 return View(gameVM);
             }
             else
@@ -67,34 +67,44 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
 
                 return View(gameVM);
             }
-           
+
             return View(gameVM);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public  IActionResult Upsert(GameVM gameVm,List<IFormFile> files)
+        public IActionResult Upsert(GameVM gameVm, List<IFormFile> files)
         {
-            
+
             if (ModelState.IsValid)
             {
-               if(gameVm.Game.Plateformes == null)
+                if (gameVm.Game.Plateformes == null)
                 {
                     gameVm.Game.Plateformes = new List<Plateforme>();
-
+                }
+                if(gameVm.Game.Subtitles == null)
+                {
                     gameVm.Game.Subtitles = new List<Subtitle>();
 
-                    gameVm.Game.VoiceLanguages = new List<VoiceLanguage>();
-                    gameVm.Game.Genders = new List<Gender>();
                 }
-                
+                if(gameVm.Game.VoiceLanguages == null)
+                {
+                    gameVm.Game.VoiceLanguages = new List<VoiceLanguage>();
+
+                }
+                if(gameVm.Game.Genders == null)
+                {
+                    gameVm.Game.Genders = new List<Gender>();
+
+                }
+
                 // upload files
                 string wwwRootPath = _hostEnvironment.WebRootPath;
-                if (files != null && files.Count>0)
+                if (files != null && files.Count > 0)
                 {
                     gameVm.Game.Images = new List<Image>();
                     foreach (var file in files)
                     {
-                        if(file != null)
+                        if (file != null)
                         {
                             // set image type
                             ImageType type;
@@ -121,11 +131,11 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
                             string fileName = Guid.NewGuid().ToString();
                             var uploads = Path.Combine(wwwRootPath, @"images/Games");
                             var extension = Path.GetExtension(file.FileName);
-                            if(gameVm.Game.Images != null)
+                            if (gameVm.Game.Images != null)
                             {
-                                foreach(var img in gameVm.Game.Images)
+                                foreach (var img in gameVm.Game.Images)
                                 {
-                                    var oldImagePath = Path.Combine(wwwRootPath,img.ImageUrl);
+                                    var oldImagePath = Path.Combine(wwwRootPath, img.ImageUrl);
                                     if (System.IO.File.Exists(oldImagePath))
                                     {
                                         System.IO.File.Delete(oldImagePath);
@@ -138,10 +148,10 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
 
                                 gameVm.Game.Images.Add(new Image { Name = fileName, ImageUrl = @"images/Games/" + fileName + extension, ImageType = type });
                             }
-                          
+
                         }
                     }
-                   
+
                 }
 
                 gameVm.Game.Plateformes = new List<Plateforme>();
@@ -167,7 +177,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
                     {
                         gameVm.Game.Genders.Add(gender);
                     }
-                    
+
 
                 }
                 // retrieve selected Subtitles
@@ -183,9 +193,9 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
                 // retrieve selected Voice Languages
                 foreach (var id in gameVm.SelectedVoice)
                 {
-                    
+
                     var voice = gameVm.VoiceLanguagesList.FirstOrDefault(p => p.Id.ToString().Equals(id));
-                    if(voice != null)
+                    if (voice != null)
                     {
                         gameVm.Game.VoiceLanguages.Add(voice);
 
@@ -194,7 +204,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
 
                 }
 
-                if(gameVm.Game.Id == 0)
+                if (gameVm.Game.Id == 0)
                 {
                     _unitOfWork.Game.Add(gameVm.Game);
                 }
@@ -204,45 +214,36 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
 
                 }
                 _unitOfWork.Save();
+
                 TempData["success"] = "Game has created successfuly";
-                return RedirectToAction("UpsertMoreDetails",gameVm.Game);
+                return RedirectToAction("UpsertMoreDetails", gameVm.Game);
 
             }
             return View(gameVm);
 
         }
-        
+        // Get
         public IActionResult UpsertMoreDetails(Game game)
         {
-            
+
             return View(game);
         }
 
 
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpsertMoreDeatils(IFormFile files)
-        {
-
-            return View();
-
-        }
-     
-        
         #region API CALLS
         [HttpGet]
         public IActionResult GetAll()
 
         {
             var gameList = _unitOfWork.Game.GetAll(includeProperties: "Images,Developer");
-            
-            return Json(new {data = gameList});
+
+            return Json(new { data = gameList });
         }
         [HttpDelete]
         public IActionResult DeletePost(int? id)
         {
-            var game = _unitOfWork.Game.GetFirstOrDefault(x => x.Id == id);
+            var game = _unitOfWork.Game.GetFirstOrDefault(x => x.Id == id,includeProperties: "Images");
             if (game == null)
             {
                 return Json(new { success = false, message = "Error while deleting" });
@@ -257,49 +258,15 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
             }
             _unitOfWork.Game.Remove(game);
             _unitOfWork.Save();
-            return Json(new { success = true, message = "Delete Successful" });
+            return Json(new { success = true, message = game.Name + " Delete Successful" });
 
         }
-        [HttpGet]
-        public IActionResult GetVideoByGame(int gameId)
 
-        {
-            var videoList = _unitOfWork.Video.GetAll().Where(c => c.GameId == gameId);
-            
-            return Json(new { data = videoList });
-        }
-        [HttpDelete]
-        public IActionResult DeleteVideoPost(int? id)
-        {
-            var video = _unitOfWork.Video.GetFirstOrDefault(c => c.Id == id);
-            if (video == null)
-            {
-                return Json(new { success = false, message = "Error while deleting" });
-            }
-
-            _unitOfWork.Video.Remove(video);
-            _unitOfWork.Save();
-            return Json(new { success = true, message = "Delete Successful" });
-
-        }
-        [HttpPost]
-        public IActionResult AddVideo(int gameId, string videoType, string url)
-
-        {
-            Enum.TryParse<VideoType>(videoType, out VideoType type);
-            Video video = new Video
-            {
-                Type = type,
-                URL = url,
-                GameId = gameId
-            };
-            _unitOfWork.Video.Add(video);
-            _unitOfWork.Save();
-            return Json(new { success = true, message = "added Successful" });
-        }
         #endregion
+
+
+
+
     }
 
-   
-   
 }

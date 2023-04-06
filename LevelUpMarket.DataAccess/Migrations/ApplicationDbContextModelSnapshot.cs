@@ -113,6 +113,10 @@ namespace LevelUpMarket.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("CharacterName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("CharacterType")
                         .HasColumnType("int");
 
@@ -129,10 +133,6 @@ namespace LevelUpMarket.Migrations
 
                     b.Property<bool>("MainCharacter")
                         .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

@@ -1,18 +1,19 @@
 ﻿using LevelUpMarket.DataAccess.Repository.IRepository;
 using LevelUpMarket.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Hosting;
 
 namespace LevelUpMarketWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class VideoController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        
         public VideoController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
+
+
         #region API CALLS
         [HttpGet]
         public IActionResult GetVideoByGame(int gameId)
@@ -23,7 +24,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
             return Json(new { data = videoList });
         }
         [HttpDelete]
-        public IActionResult DeletePost(int? id)
+        public IActionResult DeleteVideoPost(int? id)
         {
             var video = _unitOfWork.Video.GetFirstOrDefault(c => c.Id == id);
             if (video == null)
@@ -36,16 +37,19 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
             return Json(new { success = true, message = "Delete Successful" });
 
         }
+
+        // test this method with Video parametre
         [HttpPost]
-        public IActionResult AddVideo(int gameId, string videoType, string url)
+        public IActionResult AddVideo(Video v)
 
         {
-            Enum.TryParse<VideoType>(videoType, out VideoType type);
+            Enum.TryParse<VideoType>(v.Type.ToString(), out VideoType type);
+                //(v.Type, out VideoType type);
             Video video = new Video
             {
                 Type = type,
-                URL= url,
-                GameId= gameId
+                URL = v.URL,
+                GameId = v.GameId
             };
             _unitOfWork.Video.Add(video);
             _unitOfWork.Save();

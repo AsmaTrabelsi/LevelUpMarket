@@ -1,7 +1,7 @@
 ﻿@model LevelUpMarket.Models.ViewModel.GameVM
 
 <form method="post" asp-action="Upsert" enctype="multipart/form-data">
-    <input asp-for="Game.Id" hidden />
+    <input asp-for="Game.Id" id="gameId" hidden />
     <div class="border p-3 mt-4 row">
         <div class="row pb-2">
             <h2 class="text-primary">@(Model.Game != null && Model.Game.Id != 0 ? "Edit " + Model.Game.Name : "Add New Game") </h2>

@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\js\addCharacter.js" />
     <Content Remove="wwwroot\js\addVideos.js" />
   </ItemGroup>
 
@@ -30,9 +31,11 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\Games\" />
+    <Folder Include="wwwroot\images\Characters\" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\js\addCharacter.js" />
     <None Include="wwwroot\js\addVideos.js" />
   </ItemGroup>
 

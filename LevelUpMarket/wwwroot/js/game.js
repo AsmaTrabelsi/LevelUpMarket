@@ -13,7 +13,13 @@ function loadDataTable() {
                 "width": "10%",
                 "render": function (imgs) {
                     var src = imgs.filter(item => item.imageType === 4);
-                    return `<img src="/${src[0].imageUrl}" width="120" height="200" alt="test"/>`;
+                    if (src != null && src.length > 0) {
+                        return `<img src="/${src[0].imageUrl}" width="120" height="200" alt="test"/>`;
+
+                    } else {
+                        return `<img src="/${imgs[0].imageUrl}" width="120" height="200" alt="test"/>`;
+ 
+                    }
                 }
             },
             { "data": "name", "width": "10%" },
@@ -65,7 +71,7 @@ function loadDataTable() {
                         <a href="/Admin/Game/Upsert?id=${data}"class="btn" >
                             <i class="bi bi-pencil-square fs-4"></i> 
                         </a>
-                        <a class="btn" onClick=Delete('/Admin/Game/Delete/+${data}') >
+                        <a class="btn" onClick=Delete('/Admin/Game/DeletePost/+${data}') >
                             <i class="bi bi-trash-fill fs-4" ></i> 
                         </a>
                    </div>
@@ -86,8 +92,8 @@ function Delete(url) {
         text: "You won't be able to revert this!",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#2c3e50',
+        cancelButtonColor: '#e74c3c',
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
         if (result.isConfirmed) {

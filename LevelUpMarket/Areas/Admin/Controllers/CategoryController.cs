@@ -14,7 +14,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-
+      
         public IActionResult Index()
         {
             IEnumerable<Category> categoryList = _unitOfWork.Category.GetAll();

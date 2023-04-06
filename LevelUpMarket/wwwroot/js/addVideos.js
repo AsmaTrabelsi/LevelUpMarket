@@ -57,9 +57,8 @@ $(document).ready(function () {
 function loadVideoList() {
     const gameId = document.querySelector("#gameId").value;
 
-
     $.ajax({
-        "url": "/Admin/Game/GetVideoByGame?GameId=" + gameId,
+        "url": "/Admin/Video/GetVideoByGame?GameId=" + gameId,
         type: "Get",
         dataType: "json",
         success: function (data) {
@@ -75,7 +74,7 @@ function loadVideoList() {
                 var videoUrlInput = $("<input>").attr("type", "text").addClass("input-filed").attr("readonly", true).val(item.url).css("width", "60%");
                 var deleteButton = $("<button>").addClass("btn").css({ marginLeft: "auto" }).html(`<i class="bi bi-trash-fill fs-5" ></i>`).on("click", function () {
                     $.ajax({
-                        url: "/Admin/Game/DeleteVideoPost/" + item.id,
+                        url: "/Admin/Video/DeleteVideoPost/" + item.id,
                         type: "DELETE",
                         dataType: "json",
                         success: function (data) {
@@ -103,18 +102,16 @@ function loadVideoList() {
 
 
 
-const idGame = 21;
-console.log(gameId);
 function addVideo() {
-    const gameId = document.querySelector("#gameId").value;
+    const id = document.querySelector("#gameId").value;
 
     const type = document.querySelector("#video-type-select").value;
     const url = document.querySelector("#add-url-input").value;
     $.ajax({
-        "url": "/Admin/Game/AddVideo",
+        "url": "/Admin/Video/AddVideo",
         type: "Post",
         data: {
-            gameId: gameId,
+            gameId: id,
             videoType: type,
             url: url
         },
