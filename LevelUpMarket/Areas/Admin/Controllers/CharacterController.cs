@@ -1,5 +1,6 @@
 ﻿using LevelUpMarket.DataAccess.Repository.IRepository;
 using LevelUpMarket.Models;
+using LevelUpMarket.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Packaging.Signing;
 
@@ -27,11 +28,13 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddCharacter(Character character, IFormFile file, int idGame)
+        public IActionResult AddCharacter(Character character, IFormFile file, int idGame, int charcterId)
         {
             if (ModelState.IsValid)
             {
+                Console.WriteLine(character.CharacterId);
                 character.GameId = idGame;
+                character.CharacterId = charcterId;
                 string wwwRootPath = _hostEnvironment.WebRootPath;
                 string imgUrl = "";
                 if (file != null)
@@ -40,8 +43,17 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
                     string fileName = Guid.NewGuid().ToString();
                     var uploads = Path.Combine(wwwRootPath, @"images/Characters");
                     var extension = Path.GetExtension(file.FileName);
+                    if (character.ImageUrl != null)
+                    {
 
-                    using (var stream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                        var oldImagePath = Path.Combine(wwwRootPath, character.ImageUrl);
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+
+                }
+                using (var stream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
                     {
                         file.CopyTo(stream);
                     }
@@ -51,11 +63,21 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
                 Enum.TryParse<CharacterType>(character.CharacterType.ToString(), out CharacterType type);
                 character.ImageUrl = imgUrl;
                 character.CharacterType = type;
-                _unitOfWork.Character.Add(character);
-                _unitOfWork.Save();
-                var game = _unitOfWork.Game.GetFirstOrDefault(g => g.Id == character.GameId,includeProperties: "Videos,Characters");
+                if(character.CharacterId != 0)
+                {
+                    _unitOfWork.Character.Update(character);
+                    _unitOfWork.Save();
+                    TempData["success"] = character.CharacterName+ " updated successfully";
 
-                TempData["success"] = "Character created successfuly";
+                }
+                else
+                {
+                    _unitOfWork.Character.Add(character);
+                    _unitOfWork.Save();
+                    TempData["success"] = character.CharacterName + " created successfuly";
+
+                }
+                var game = _unitOfWork.Game.GetFirstOrDefault(g => g.Id == character.GameId,includeProperties: "Videos,Characters");
 
                 return RedirectToAction("UpsertMoreDetails", "Game", game);
             }
@@ -72,10 +94,11 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
 
             return Json(new { data = characterList });
         }
+
         [HttpDelete]
         public IActionResult DeleteCharacterPost(int? id)
         {
-            var character = _unitOfWork.Character.GetFirstOrDefault(c => c.Id == id);
+            var character = _unitOfWork.Character.GetFirstOrDefault(c => c.CharacterId == id);
             if (character == null)
             {
                 return Json(new { success = false, message = "Error while deleting" });

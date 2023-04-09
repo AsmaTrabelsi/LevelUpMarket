@@ -99,7 +99,9 @@ html {
 
 body {
     margin-bottom: 60px;
-    background: #e0eafc
+    background: #e0eafc;
+    font-family: 'Jost', sans-serif !important;
+ 
 }
 
 

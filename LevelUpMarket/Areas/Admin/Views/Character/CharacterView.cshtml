@@ -8,6 +8,8 @@
         <legend class="p-2">Add Character</legend>
         <form method="post" asp-controller="Character"  asp-area="Admin" asp-action="AddCharacter" id="add-character-form" enctype="multipart/form-data">
             <input asp-for="GameId" id="idGame" value=@idGame name="idGame" hidden />
+            <input asp-for="CharacterId" id="charcterId" name="charcterId" hidden />
+
             <div class="mb-3">
                 <input asp-for="CharacterName" placeholder="Name" class="form-control" />
                 <span asp-validation-for="CharacterName" class="text-danger"></span>
@@ -18,10 +20,11 @@
             </div>
             <div mb-3>
                 <select asp-for="CharacterType" class="form-select" id="add-type-select">
-                    <option disabled selected>--Select Character Type--</option>
+                    <option selected disabled>--Select Character Type--</option>
                     @foreach (var type in Enum.GetValues(typeof(CharacterType)))
                     {
-                        <option value="@type">@type.ToString().ToLower()</option>
+                        int index = Array.IndexOf(Enum.GetValues(typeof(CharacterType)), type);
+                        <option value="@index">@type.ToString().ToLower()</option>
                     }
                 </select>
                 <span asp-validation-for="CharacterType" class="text-danger"></span>
@@ -33,11 +36,13 @@
 
             </div>
             <div>
-                <input asp-for="MainCharacter"  class="form-check-input" type="checkbox" id="scales" name="scales">
+
+                <input asp-for="MainCharacter" class="form-check-input" type="checkbox" id="isMain">
                 <label>Is Main Character</label>
             </div>
             <div class="form-group d-flex justify-content-end">
-                <input type="submit"  onclick="return ValidateInput()" value="Add" class="btn btn-primary px-5" />
+                
+                <input type="submit" onclick="return ValidateInput()" value="Add"  class="btn btn-primary px-5" id="btn-sumbit"/>
             </div>
 
         </form>
@@ -50,35 +55,35 @@
                 </div> -->
             </div>
         </div>
+    
     </div>
 </div>
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="~/js/addCharacter.js"></script>
+<script>
+    function ValidateInput() {
 
+        if (document.getElementById("upload-input").files.length == 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please upload at last an Image!',
+
+            });
+            return false;
+        }
+        return true;
+    }
+</script>
 
 
 @section Scripts
     {
     @{
-        <partial name="_ValidationScriptsPartial" />
-        <link rel="stylesheet" href="~/css/AddGame.css" asp-append-version="true" />
+    <partial name="_ValidationScriptsPartial" />
+    <link rel="stylesheet" href="~/css/AddGame.css" asp-append-version="true" />
     }
-        <script>
-        function ValidateInput() {
-
-            if (document.getElementById("upload-input").files.length == 0) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Please upload at last an Image!',
-
-                });
-                return false;
-            }
-            return true;
-        }
-    </script>
 
 }

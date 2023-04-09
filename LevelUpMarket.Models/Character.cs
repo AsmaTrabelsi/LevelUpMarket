@@ -11,7 +11,7 @@ namespace LevelUpMarket.Models
     public class Character
     {
         [Key]
-       public int Id { get; set; }
+       public int CharacterId { get; set; }
         [Required]
        public string CharacterName { get; set; }
         [Required]

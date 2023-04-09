@@ -107,11 +107,11 @@ namespace LevelUpMarket.Migrations
 
             modelBuilder.Entity("LevelUpMarket.Models.Character", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CharacterId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CharacterId"));
 
                     b.Property<string>("CharacterName")
                         .IsRequired()
@@ -134,7 +134,7 @@ namespace LevelUpMarket.Migrations
                     b.Property<bool>("MainCharacter")
                         .HasColumnType("bit");
 
-                    b.HasKey("Id");
+                    b.HasKey("CharacterId");
 
                     b.HasIndex("GameId");
 

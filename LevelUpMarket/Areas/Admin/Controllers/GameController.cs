@@ -207,15 +207,18 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
                 if (gameVm.Game.Id == 0)
                 {
                     _unitOfWork.Game.Add(gameVm.Game);
+                    TempData["success"] = "Game has been created successfully";
+
                 }
                 else
                 {
                     _unitOfWork.Game.Update(gameVm.Game);
+                    TempData["success"] = gameVm.Game.Name + " has been updated successfully";
+
 
                 }
                 _unitOfWork.Save();
 
-                TempData["success"] = "Game has created successfuly";
                 return RedirectToAction("UpsertMoreDetails", gameVm.Game);
 
             }
