@@ -1,5 +1,7 @@
 ﻿using LevelUpMarket.Data;
 using LevelUpMarket.DataAccess.Repository.IRepository;
+using LevelUpMarket.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +45,28 @@ namespace LevelUpMarket.DataAccess.Repository
         void IUnitOfWork.Save()
         {
             _db.SaveChanges();
+        }
+
+        void IUnitOfWork.deleteFroGamePlateforme(int gameId)
+        {
+            _db.Database.ExecuteSqlRaw("delete from GamePlateforme where gamesId = " + gameId);
+        }
+
+        void IUnitOfWork.deleteFroGameGender(int gameId)
+        {
+            _db.Database.ExecuteSqlRaw("delete from GameGenders where gamesId = " + gameId);
+        }
+
+        void IUnitOfWork.deleteFroGameSubtitle(int gameId)
+        {
+            _db.Database.ExecuteSqlRaw("delete from GameSubtitle where gamesId = " + gameId);
+
+           
+        }
+
+        void IUnitOfWork.deleteFroGameVoiceLanguage(int gameId)
+        {
+            _db.Database.ExecuteSqlRaw("delete from GameVoiceLanguages where gamesId = " + gameId);
         }
     }
 }

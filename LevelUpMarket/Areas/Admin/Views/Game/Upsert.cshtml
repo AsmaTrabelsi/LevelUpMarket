@@ -81,6 +81,7 @@
 
 
         <div class="mb-3 col-6">
+            <input type="hidden" name="PlateformeList" value='@Json.Serialize(Model.Game.Plateformes)' />
             <label asp-for="Game.Plateformes"></label>
             <select asp-for="SelectedPlateformes"
                     asp-items="@(new SelectList(Model.PlateformeList, nameof(Plateforme.Id), nameof(Plateforme.Name)))"
@@ -91,6 +92,7 @@
         </div>
 
         <div class="mb-3 col-6">
+            <input type="hidden" name="GenderList" value='@Json.Serialize(Model.Game.Genders)' />
             <label asp-for="Game.Genders"></label>
             <select asp-for="SelectedGenders" asp-items="@(new SelectList(Model.GenderList, nameof(Gender.Id), nameof(Gender.Name)))" class="form-select">
                 <option disabled >--Select Genders--</option>
@@ -98,21 +100,19 @@
             <span asp-validation-for="Game.Genders" class="text-danger"></span>
         </div>
        
-        <input asp-for="PlateformeList" hidden></input>
-        <input asp-for="GenderList" hidden></input>
-        <input asp-for="SubtitleList" hidden></input>
-        <input asp-for="VoiceLanguagesList" hidden></input>
         <div class="mb-3 col-6">
+            <input type="hidden" name="VoiceLanguagesList" value='@Json.Serialize(Model.Game.VoiceLanguages)' />
             <label asp-for="Game.VoiceLanguages"></label>
             <select asp-for="SelectedVoice" asp-items="@(new SelectList(Model.VoiceLanguagesList, nameof(VoiceLanguage.Id), nameof(VoiceLanguage.Name)))" class="form-select">
-                <option disabled >--Select Genders--</option>
+                <option disabled >--Select Voice Languages--</option>
             </select>
             <span asp-validation-for="Game.VoiceLanguages" class="text-danger"></span>
         </div>
         <div class="mb-3 col-6">
+            <input type="hidden" name="SubtitleList" value='@Json.Serialize(Model.Game.Subtitles)' />
             <label asp-for="Game.Subtitles"></label>
             <select asp-for="SelectedSubtitle" asp-items="@(new SelectList(Model.SubtitleList, nameof(Subtitle.Id), nameof(Subtitle.Name)))" class="form-select">
-                <option disabled >--Select Genders--</option>
+                <option disabled >--Select Subtitles--</option>
             </select>
             <span asp-validation-for="Game.Subtitles" class="text-danger"></span>
         </div>

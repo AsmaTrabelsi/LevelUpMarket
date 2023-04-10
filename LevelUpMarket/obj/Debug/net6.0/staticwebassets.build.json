@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "elaQtvfoyull0uQH2yfZc3UFuIny+PttHhbaz61XTw0=",
+  "Hash": "joAZSj5mLpqM+rW3iDiLviDmvnQ0SoCC1DHVspK2rR0=",
   "Source": "LevelUpMarketWeb",
   "BasePath": "_content/LevelUpMarketWeb",
   "Mode": "Default",
@@ -969,23 +969,6 @@
       "OriginalItemSpec": "wwwroot\\images\\Games\\00db99f4-02f4-4564-af33-aa84998a6e5d.jpg"
     },
     {
-      "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\023d2558-29c4-4f34-b844-617b4aaa5ddc.jpeg",
-      "SourceId": "LevelUpMarketWeb",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\",
-      "BasePath": "_content/LevelUpMarketWeb",
-      "RelativePath": "images/Games/023d2558-29c4-4f34-b844-617b4aaa5ddc.jpeg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\Games\\023d2558-29c4-4f34-b844-617b4aaa5ddc.jpeg"
-    },
-    {
       "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\05d8f54d-880f-4b6a-8767-b2ce5434c950.jpg",
       "SourceId": "LevelUpMarketWeb",
       "SourceType": "Discovered",
@@ -1020,12 +1003,12 @@
       "OriginalItemSpec": "wwwroot\\images\\Games\\0bab6b06-ba87-44db-ab5b-b1be0062a487.jpg"
     },
     {
-      "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\15f79191-e1e9-4c5b-82a4-87c59998f1cd.jpg",
+      "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\0df304fc-7d34-4c2a-bc69-76b187315600.jpg",
       "SourceId": "LevelUpMarketWeb",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\",
       "BasePath": "_content/LevelUpMarketWeb",
-      "RelativePath": "images/Games/15f79191-e1e9-4c5b-82a4-87c59998f1cd.jpg",
+      "RelativePath": "images/Games/0df304fc-7d34-4c2a-bc69-76b187315600.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1034,7 +1017,41 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\Games\\15f79191-e1e9-4c5b-82a4-87c59998f1cd.jpg"
+      "OriginalItemSpec": "wwwroot\\images\\Games\\0df304fc-7d34-4c2a-bc69-76b187315600.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\198a27f1-e65b-434c-8186-0476afcf0150.jpg",
+      "SourceId": "LevelUpMarketWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\",
+      "BasePath": "_content/LevelUpMarketWeb",
+      "RelativePath": "images/Games/198a27f1-e65b-434c-8186-0476afcf0150.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Games\\198a27f1-e65b-434c-8186-0476afcf0150.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\1e7c5d93-4a93-4dbb-a3af-4cbe2714396f.jpg",
+      "SourceId": "LevelUpMarketWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\",
+      "BasePath": "_content/LevelUpMarketWeb",
+      "RelativePath": "images/Games/1e7c5d93-4a93-4dbb-a3af-4cbe2714396f.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Games\\1e7c5d93-4a93-4dbb-a3af-4cbe2714396f.jpg"
     },
     {
       "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\24b6701f-a8a2-4b38-81fa-af89438f2cf9.jpeg",
@@ -1071,12 +1088,12 @@
       "OriginalItemSpec": "wwwroot\\images\\Games\\32833438-e482-4b5b-9c93-8861d57f27ae.jfif"
     },
     {
-      "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\371a3c87-8f71-47f7-8c69-6a2b7b61ca29.jpeg",
+      "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\3b9e4fa0-ca77-4c5e-9034-d79f795d379f.jpg",
       "SourceId": "LevelUpMarketWeb",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\",
       "BasePath": "_content/LevelUpMarketWeb",
-      "RelativePath": "images/Games/371a3c87-8f71-47f7-8c69-6a2b7b61ca29.jpeg",
+      "RelativePath": "images/Games/3b9e4fa0-ca77-4c5e-9034-d79f795d379f.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1085,7 +1102,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\Games\\371a3c87-8f71-47f7-8c69-6a2b7b61ca29.jpeg"
+      "OriginalItemSpec": "wwwroot\\images\\Games\\3b9e4fa0-ca77-4c5e-9034-d79f795d379f.jpg"
     },
     {
       "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\3c0edf20-273f-4440-9e3f-cb18a41f7cf7.jpg",
@@ -1103,6 +1120,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\Games\\3c0edf20-273f-4440-9e3f-cb18a41f7cf7.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\57cfb5f1-17be-425b-9463-38eb43cdda69.jpg",
+      "SourceId": "LevelUpMarketWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\",
+      "BasePath": "_content/LevelUpMarketWeb",
+      "RelativePath": "images/Games/57cfb5f1-17be-425b-9463-38eb43cdda69.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Games\\57cfb5f1-17be-425b-9463-38eb43cdda69.jpg"
     },
     {
       "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\632aea5e-7b78-4af3-826c-5c009595cfe3.png",
@@ -1156,12 +1190,12 @@
       "OriginalItemSpec": "wwwroot\\images\\Games\\68c6d869-dbda-4cc5-9f59-9cc552d2dfe1.png"
     },
     {
-      "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\7b1f24f9-150e-4f96-bb8f-4ea022fc491a.jpg",
+      "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\6b15d734-30c3-4775-ad32-79512615c5d9.jpg",
       "SourceId": "LevelUpMarketWeb",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\",
       "BasePath": "_content/LevelUpMarketWeb",
-      "RelativePath": "images/Games/7b1f24f9-150e-4f96-bb8f-4ea022fc491a.jpg",
+      "RelativePath": "images/Games/6b15d734-30c3-4775-ad32-79512615c5d9.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1170,7 +1204,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\Games\\7b1f24f9-150e-4f96-bb8f-4ea022fc491a.jpg"
+      "OriginalItemSpec": "wwwroot\\images\\Games\\6b15d734-30c3-4775-ad32-79512615c5d9.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\74879fb1-6e9b-40f6-9f82-7a9e6e7084e2.jpg",
+      "SourceId": "LevelUpMarketWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\",
+      "BasePath": "_content/LevelUpMarketWeb",
+      "RelativePath": "images/Games/74879fb1-6e9b-40f6-9f82-7a9e6e7084e2.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Games\\74879fb1-6e9b-40f6-9f82-7a9e6e7084e2.jpg"
     },
     {
       "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\7c6da479-eb11-4dbb-a4bf-e7cde99de9ca.png",
@@ -1205,23 +1256,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\Games\\7db528cc-6281-4adf-aaa0-7a1dae7527bb.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\7e4c8f24-8c4e-40dc-a4ea-c0990cd80edc.jpeg",
-      "SourceId": "LevelUpMarketWeb",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\",
-      "BasePath": "_content/LevelUpMarketWeb",
-      "RelativePath": "images/Games/7e4c8f24-8c4e-40dc-a4ea-c0990cd80edc.jpeg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\Games\\7e4c8f24-8c4e-40dc-a4ea-c0990cd80edc.jpeg"
     },
     {
       "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\8316538d-9875-4236-910c-fd23439f75e3.jpeg",
@@ -1326,57 +1360,6 @@
       "OriginalItemSpec": "wwwroot\\images\\Games\\95498563-0007-408b-a0b0-e937866e92ee.png"
     },
     {
-      "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\9db9d2b5-e5d5-4c41-837a-4639d6e26bbd.jfif",
-      "SourceId": "LevelUpMarketWeb",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\",
-      "BasePath": "_content/LevelUpMarketWeb",
-      "RelativePath": "images/Games/9db9d2b5-e5d5-4c41-837a-4639d6e26bbd.jfif",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\Games\\9db9d2b5-e5d5-4c41-837a-4639d6e26bbd.jfif"
-    },
-    {
-      "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\a2493a8b-89d5-4853-a89b-c81b4f2b12ba.jpeg",
-      "SourceId": "LevelUpMarketWeb",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\",
-      "BasePath": "_content/LevelUpMarketWeb",
-      "RelativePath": "images/Games/a2493a8b-89d5-4853-a89b-c81b4f2b12ba.jpeg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\Games\\a2493a8b-89d5-4853-a89b-c81b4f2b12ba.jpeg"
-    },
-    {
-      "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\a940dabf-d0d9-479e-953b-ed7e9ebd469f.jpeg",
-      "SourceId": "LevelUpMarketWeb",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\",
-      "BasePath": "_content/LevelUpMarketWeb",
-      "RelativePath": "images/Games/a940dabf-d0d9-479e-953b-ed7e9ebd469f.jpeg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\Games\\a940dabf-d0d9-479e-953b-ed7e9ebd469f.jpeg"
-    },
-    {
       "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\b450f98e-7013-43ba-a00b-5b4e3e47342c.jpg",
       "SourceId": "LevelUpMarketWeb",
       "SourceType": "Discovered",
@@ -1445,40 +1428,6 @@
       "OriginalItemSpec": "wwwroot\\images\\Games\\b9497f71-cd9b-4c56-9fb3-e9f500ee8ee1.png"
     },
     {
-      "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\c1244417-f2e4-4c89-8514-2615c770e1c8.jpg",
-      "SourceId": "LevelUpMarketWeb",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\",
-      "BasePath": "_content/LevelUpMarketWeb",
-      "RelativePath": "images/Games/c1244417-f2e4-4c89-8514-2615c770e1c8.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\Games\\c1244417-f2e4-4c89-8514-2615c770e1c8.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\c478b55c-8b05-4095-baef-f7981084c5e6.png",
-      "SourceId": "LevelUpMarketWeb",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\",
-      "BasePath": "_content/LevelUpMarketWeb",
-      "RelativePath": "images/Games/c478b55c-8b05-4095-baef-f7981084c5e6.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\Games\\c478b55c-8b05-4095-baef-f7981084c5e6.png"
-    },
-    {
       "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\cad259ad-6e38-467e-bce9-aecf02374e1d.jfif",
       "SourceId": "LevelUpMarketWeb",
       "SourceType": "Discovered",
@@ -1530,23 +1479,6 @@
       "OriginalItemSpec": "wwwroot\\images\\Games\\cec9d597-ca42-4500-afef-4dd3ed5dc955.jpg"
     },
     {
-      "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\cfb9b0ab-63de-4d4c-9028-b4de009a0d0d.png",
-      "SourceId": "LevelUpMarketWeb",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\",
-      "BasePath": "_content/LevelUpMarketWeb",
-      "RelativePath": "images/Games/cfb9b0ab-63de-4d4c-9028-b4de009a0d0d.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\Games\\cfb9b0ab-63de-4d4c-9028-b4de009a0d0d.png"
-    },
-    {
       "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\d5f591d6-6170-49b0-b923-bb64be6c9365.jpg",
       "SourceId": "LevelUpMarketWeb",
       "SourceType": "Discovered",
@@ -1564,12 +1496,12 @@
       "OriginalItemSpec": "wwwroot\\images\\Games\\d5f591d6-6170-49b0-b923-bb64be6c9365.jpg"
     },
     {
-      "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\d93c9287-40d9-4902-a580-b70f39c531fa.png",
+      "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\d718d666-8ec0-43cd-90dc-788aa4ae87fe.jpg",
       "SourceId": "LevelUpMarketWeb",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\",
       "BasePath": "_content/LevelUpMarketWeb",
-      "RelativePath": "images/Games/d93c9287-40d9-4902-a580-b70f39c531fa.png",
+      "RelativePath": "images/Games/d718d666-8ec0-43cd-90dc-788aa4ae87fe.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1578,7 +1510,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\Games\\d93c9287-40d9-4902-a580-b70f39c531fa.png"
+      "OriginalItemSpec": "wwwroot\\images\\Games\\d718d666-8ec0-43cd-90dc-788aa4ae87fe.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\dc1705b0-a247-4fbc-ac19-6c77bb1e8bd9.jpg",
+      "SourceId": "LevelUpMarketWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\",
+      "BasePath": "_content/LevelUpMarketWeb",
+      "RelativePath": "images/Games/dc1705b0-a247-4fbc-ac19-6c77bb1e8bd9.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Games\\dc1705b0-a247-4fbc-ac19-6c77bb1e8bd9.jpg"
     },
     {
       "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\e037ddb9-f5e2-429a-83ee-41d7da47107e.jpg",
@@ -1596,6 +1545,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\Games\\e037ddb9-f5e2-429a-83ee-41d7da47107e.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\f58f5af5-abda-4867-988c-4b503738fd46.jpg",
+      "SourceId": "LevelUpMarketWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\",
+      "BasePath": "_content/LevelUpMarketWeb",
+      "RelativePath": "images/Games/f58f5af5-abda-4867-988c-4b503738fd46.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Games\\f58f5af5-abda-4867-988c-4b503738fd46.jpg"
     },
     {
       "Identity": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\wwwroot\\images\\Games\\ff9b20ff-5f03-4c94-923c-583febe237ff.PNG",

@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using System.Linq;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace LevelUpMarketWeb.Areas.Admin.Controllers
 {
@@ -74,9 +75,12 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Upsert(GameVM gameVm, List<IFormFile> files)
         {
+         
 
             if (ModelState.IsValid)
             {
+               
+
                 if (gameVm.Game.Plateformes == null)
                 {
                     gameVm.Game.Plateformes = new List<Plateforme>();
@@ -128,6 +132,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
                             {
                                 type = ImageType.NAVGATION;
                             }
+
                             string fileName = Guid.NewGuid().ToString();
                             var uploads = Path.Combine(wwwRootPath, @"images/Games");
                             var extension = Path.GetExtension(file.FileName);
@@ -154,17 +159,15 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
 
                 }
 
-                gameVm.Game.Plateformes = new List<Plateforme>();
 
                 // retrieve selected Plateformes
                 foreach (var id in gameVm.SelectedPlateformes)
                 {
-                    var plateforme = gameVm.PlateformeList.FirstOrDefault(p => p.Id.ToString().Equals(id));
-                    // var plateforme = _unitOfWork.Plateforme.GetFirstOrDefault(p => p.Id.ToString().Equals(id));
+                    var plateforme = _unitOfWork.Plateforme.GetFirstOrDefault(p => p.Id.ToString().Equals(id));
 
                     if (plateforme != null)
                     {
-                        gameVm.Game.Plateformes.Add(plateforme);
+                       gameVm.Game.Plateformes.Add(plateforme);
                     }
                 }
 
@@ -172,7 +175,8 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
                 // retrieve selected Genders
                 foreach (var id in gameVm.SelectedGenders)
                 {
-                    var gender = gameVm.GenderList.FirstOrDefault(p => p.Id.ToString().Equals(id));
+
+                    var gender = _unitOfWork.Gender.GetFirstOrDefault(p => p.Id.ToString().Equals(id));
                     if (gender != null)
                     {
                         gameVm.Game.Genders.Add(gender);
@@ -183,7 +187,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
                 // retrieve selected Subtitles
                 foreach (var id in gameVm.SelectedSubtitle)
                 {
-                    var subtitle = gameVm.SubtitleList.FirstOrDefault(p => p.Id.ToString().Equals(id));
+                    var subtitle = _unitOfWork.Subtitle.GetFirstOrDefault(p => p.Id.ToString().Equals(id));
                     if (subtitle != null)
                     {
                         gameVm.Game.Subtitles.Add(subtitle);
@@ -191,10 +195,11 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
 
                 }
                 // retrieve selected Voice Languages
+          
                 foreach (var id in gameVm.SelectedVoice)
                 {
 
-                    var voice = gameVm.VoiceLanguagesList.FirstOrDefault(p => p.Id.ToString().Equals(id));
+                    var voice = _unitOfWork.VoiceLanguage.GetFirstOrDefault(p => p.Id.ToString().Equals(id));
                     if (voice != null)
                     {
                         gameVm.Game.VoiceLanguages.Add(voice);
@@ -212,6 +217,10 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
                 }
                 else
                 {
+                    _unitOfWork.deleteFroGamePlateforme(gameVm.Game.Id);
+                    _unitOfWork.deleteFroGameGender(gameVm.Game.Id);
+                    _unitOfWork.deleteFroGameSubtitle(gameVm.Game.Id);
+                    _unitOfWork.deleteFroGameVoiceLanguage(gameVm.Game.Id);
                     _unitOfWork.Game.Update(gameVm.Game);
                     TempData["success"] = gameVm.Game.Name + " has been updated successfully";
 
