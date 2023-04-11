@@ -16,7 +16,10 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand row" asp-action="Index" asp-controller="Home" asp-area="Customer">
+                    <div style="background-image: url('/images/Logo.png'); background-size: cover; width: 35px; height: 25px; margin-left: 10px;"></div>
+                    
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -25,24 +28,32 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                       
+ 
                  
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Content Mangment</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="CoverType" asp-action="Index">Cover Type</a>
-                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" asp-area="Admin" asp-controller="Game" asp-action="Index">Game List</a>
+                                <div class="dropdown-divider"></div>
+
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Plateforme" asp-action="Index">Plateforme</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Gender" asp-action="Index">Gender</a>
+
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="CoverType" asp-action="Index">Cover Type</a>
 
                             </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index">
+                                <i class="bi bi-cart"></i>
+                            </a>
                         </li>
                        @* <form class="d-flex">
                             <input class="form-control me-sm-2" type="search" placeholder="Search">
                             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
                         </form>*@
                     </ul>
-                  
+                  <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>

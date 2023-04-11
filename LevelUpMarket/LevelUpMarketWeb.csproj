@@ -16,6 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.4">
@@ -27,6 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LevelUpMarket.DataAccess\LevelUpMarket.DataAccess.csproj" />
+    <ProjectReference Include="..\LevelUpMarket.Utility\LevelUpMarket.Utility.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -4,6 +4,17 @@
     @{
         this.ViewContext.HttpContext.Items["gameId"] = Model.Id;
     }
+    <div class="row pt-4 p-2">
+        <div class="col-6">
+            <h2 class="text-primary">@(Model.Id != 0 ? "Edit " + Model.Name : "Add New Game") </h2>
+        </div>
+        <div class="col-6 text-end">
+        <a asp-controller="Game" asp-action="Index" class="btn btn-secondary" style="width:150px">
+            Back to List
+        </a>
+        </div>
+    </div>
+  
 <div id="mainContent" class="col-6">
      <div id="mainPart">
         <legend class="p-2">Add videos</legend>

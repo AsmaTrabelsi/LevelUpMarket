@@ -18,6 +18,8 @@ namespace LevelUpMarket.DataAccess.Repository.IRepository
         IVoiceLanguageRepository VoiceLanguage { get; }
         IGenderRepository Gender { get; }
         IVideoRepository Video { get; }
+        IShoppingCartRepository ShoppingCart { get; }
+        IApplicationUserRepository ApplicationUser { get; }
 
         void Save();
         void deleteFroGamePlateforme(int gameId);

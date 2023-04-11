@@ -12,7 +12,7 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-@import url("https://fonts.googleapis.com/css2?family=Jost&display=swap:ital,wght@0,400;0,700;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap");
 
 :root {
     --bs-blue: #2c3e50;
@@ -38,16 +38,18 @@
     --bs-gray-700: #7b8a8b;
     --bs-gray-800: #343a40;
     --bs-gray-900: #212529;
-    --bs-primary: #2c3e50;
+    --bs-primary: #000;
     --bs-secondary: #95a5a6;
+    --bs-third: #ffc451;
     --bs-success: #18bc9c;
     --bs-info: #3498db;
     --bs-warning: #f39c12;
     --bs-danger: #e74c3c;
     --bs-light: #ecf0f1;
     --bs-dark: #7b8a8b;
-    --bs-primary-rgb: 44, 62, 80;
+    --bs-primary-rgb: 0,0,0;
     --bs-secondary-rgb: 149, 165, 166;
+    --bs-third-rgb: 255, 196, 81;
     --bs-success-rgb: 24, 188, 156;
     --bs-info-rgb: 52, 152, 219;
     --bs-warning-rgb: 243, 156, 18;
@@ -61,7 +63,7 @@
     --bs-font-sans-serif: Lato, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
-    --bs-body-font-family: 'Jost', sans-serif;
+    --bs-body-font-family: var(--bs-font-sans-serif);
     --bs-body-font-size: 1rem;
     --bs-body-font-weight: 400;
     --bs-body-line-height: 1.5;
@@ -97,7 +99,7 @@
 
 body {
     margin: 0;
-    font-family: 'Jost', sans-serif;
+    font-family: var(--bs-body-font-family);
     font-size: var(--bs-body-font-size);
     font-weight: var(--bs-body-font-weight);
     line-height: var(--bs-body-line-height);
@@ -2481,6 +2483,7 @@ textarea.form-control-lg {
     -moz-padding-start: calc(0.75rem - 3px);
     font-size: 1rem;
     font-weight: 400;
+    line-height: 1.5;
     color: #212529;
     background-color: #fff;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
@@ -3195,12 +3198,11 @@ textarea.form-control-lg {
     color: var(--bs-btn-color);
     text-align: center;
     text-decoration: none;
-    vertical-align: central;
+    vertical-align: middle;
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
-    align-self: center;
     border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
     border-radius: var(--bs-btn-border-radius);
     background-color: var(--bs-btn-bg);
@@ -3259,7 +3261,7 @@ textarea.form-control-lg {
 
 .btn-primary {
     --bs-btn-color: #fff;
-    --bs-btn-bg: #2c3e50;
+    --bs-btn-bg: #000;
     --bs-btn-border-color: #2c3e50;
     --bs-btn-hover-color: #fff;
     --bs-btn-hover-bg: #253544;
@@ -8891,6 +8893,10 @@ textarea.form-control-lg {
 .text-secondary {
     --bs-text-opacity: 1;
     color: rgba(var(--bs-secondary-rgb), var(--bs-text-opacity)) !important;
+}
+.text-third {
+    --bs-text-opacity: 1;
+    color: rgba(var(--bs-third-rgb), var(--bs-text-opacity)) !important;
 }
 
 .text-success {

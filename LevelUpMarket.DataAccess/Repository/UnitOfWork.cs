@@ -26,6 +26,8 @@ namespace LevelUpMarket.DataAccess.Repository
             Gender = new GenderRepository(_db);
             Video = new VideoRepository(_db);
             VoiceLanguage = new VoiceLanguageRepository(_db);
+            ShoppingCart = new ShoppingCartRepository(_db);
+            ApplicationUser = new ApplicationUserRepository(_db);
         }
         public ICategoryRepository Category { get; private set; }
         public ICoverTypeRepository CoverType { get; private set; }
@@ -39,7 +41,8 @@ namespace LevelUpMarket.DataAccess.Repository
         public IGenderRepository Gender { get; private set; }
         public IVideoRepository Video { get; private set; }
 
-
+        public IShoppingCartRepository ShoppingCart { get; private set; }
+        public IApplicationUserRepository ApplicationUser { get; private set; }
 
 
         void IUnitOfWork.Save()

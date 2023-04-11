@@ -577,3 +577,12 @@ C:\Users\hj137AG\source\repos\LevelUpMarkettest\LevelUpMarket\obj\Debug\net6.0\r
 C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
 C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket\obj\Debug\net6.0\LevelUpMarketWeb.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.UI.dll
+C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Embedded.dll
+C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket\bin\Debug\net6.0\LevelUpMarket.Utility.dll
+C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket\bin\Debug\net6.0\LevelUpMarket.Utility.pdb

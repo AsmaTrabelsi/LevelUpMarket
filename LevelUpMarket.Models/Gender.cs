@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace LevelUpMarket.Models
         [Required]
       public string Name { get; set; }
         //navigation properties
+        [ValidateNever]
         public virtual ICollection<Game> Games { get; set; }
 
 

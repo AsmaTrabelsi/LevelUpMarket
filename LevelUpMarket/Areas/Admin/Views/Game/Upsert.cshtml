@@ -117,11 +117,11 @@
             <span asp-validation-for="Game.Subtitles" class="text-danger"></span>
         </div>
 
-        <div class="col-12">
+        <div class="col-12 d-flex justify-content-end">
             @if (Model.Game != null && Model.Game.Id != 0)
             {
                 <button type="submit" class="btn btn-primary" style="width:150px">
-                    Update
+                    Next
                 </button>
             }
             else
@@ -131,7 +131,7 @@
                 </button>
             }
 
-            <a asp-controller="Game" asp-action="Index" class="btn btn-secondary" style="width:150px">
+            <a asp-controller="Game" asp-action="Index" class="btn btn-secondary ms-2" style="width:150px">
                 Back to List
             </a>
         </div>
