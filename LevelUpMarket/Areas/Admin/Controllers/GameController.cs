@@ -167,7 +167,8 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
 
                     if (plateforme != null)
                     {
-                       gameVm.Game.Plateformes.Add(plateforme);
+                      gameVm.Game.Plateformes.Add(plateforme);
+                      
                     }
                 }
 

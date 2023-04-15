@@ -25,6 +25,8 @@ namespace LevelUpMarket.Data
         public DbSet<Video> Videos { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<Orderheader> Orderheaders { get; set; }
+        public DbSet<OrderDetail> OrderDetail { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // relation many to many - game and plateforme-

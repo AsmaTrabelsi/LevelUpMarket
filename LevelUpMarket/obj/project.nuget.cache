@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "LlzyR5wE5lvimD1pZ/xsXQ7sBy8XN5D3HKVvPr/HnqREdAedun/InRADI6NKF9wybtWqYp/9i6xn8QbNADRI5w==",
+  "dgSpecHash": "aDBVlB8UWtdDPW5K+a7zIBBpbdxa7uvHw68xECFJ/bvviYmtKtgFjLtd8kmVxf9TyQtbLGYT4E7neehkAYJGsQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\hj137AG\\source\\repos\\LevelUpMarket\\LevelUpMarket\\LevelUpMarketWeb.csproj",
   "expectedPackageFiles": [
@@ -142,6 +142,7 @@
     "C:\\Users\\hj137AG\\.nuget\\packages\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\hj137AG\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\hj137AG\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
+    "C:\\Users\\hj137AG\\.nuget\\packages\\stripe.net\\41.13.0\\stripe.net.41.13.0.nupkg.sha512",
     "C:\\Users\\hj137AG\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\hj137AG\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\hj137AG\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",

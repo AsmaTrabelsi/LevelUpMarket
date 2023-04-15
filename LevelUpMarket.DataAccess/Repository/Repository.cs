@@ -19,9 +19,13 @@ namespace LevelUpMarket.DataAccess.Repository
         {
             _db = db;
             this.dbSet = _db.Set<T>();
+            // Tracking : 
+           // _db.Games.AsNoTracking();
+            // includeProperties = "Category, CoverType"
+           // _db.Games.Include(u => u.Images).Include(u => u.Videos);
         }
 
-            void IRepository<T>.Add(T entity)
+        void IRepository<T>.Add(T entity)
         {
             _db.Add(entity);
         }
@@ -31,8 +35,8 @@ namespace LevelUpMarket.DataAccess.Repository
            return dbSet.Any(filter);
 
         }
-
-        // includeProperties = "Category, CoverType"
+        
+   
         IEnumerable<T> IRepository<T>.GetAll(Expression<Func<T, bool>>? filter=null,string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
@@ -51,9 +55,18 @@ namespace LevelUpMarket.DataAccess.Repository
             return query.ToList();
         }
 
-        T IRepository<T>.GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includeProperties = null)
+        T IRepository<T>.GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = true)
         {
-            IQueryable<T> query = dbSet;
+            IQueryable<T> query;
+            if (tracked)
+            {
+                query = dbSet;
+            }
+            else
+            {
+                query = dbSet.AsNoTracking();
+            }
+            
             query= query.Where(filter);
             if (includeProperties != null)
             {

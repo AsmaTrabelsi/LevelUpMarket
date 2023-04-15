@@ -586,3 +586,4 @@ C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket\bin\Debug\net6.0\Micro
 C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Embedded.dll
 C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket\bin\Debug\net6.0\LevelUpMarket.Utility.dll
 C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket\bin\Debug\net6.0\LevelUpMarket.Utility.pdb
+C:\Users\hj137AG\source\repos\LevelUpMarket\LevelUpMarket\bin\Debug\net6.0\Stripe.net.dll
