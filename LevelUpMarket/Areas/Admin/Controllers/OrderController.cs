@@ -4,6 +4,8 @@ using LevelUpMarket.Models.ViewModel;
 using LevelUpMarket.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Stripe;
+using Stripe.TestHelpers;
 using System.Diagnostics;
 using System.Security.Claims;
 
@@ -36,6 +38,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
             return View(orderVM);
         }
         [HttpPost]
+        [Authorize(Roles =SD.Role_Admin)]
         [ValidateAntiForgeryToken]
         public IActionResult UpdateOrderDetail()
         {
@@ -59,6 +62,65 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
             _unitOfWork.Save();
             TempData["Success"] = "Order Details Updated Successfully.";
             return RedirectToAction("Details","Order", new {orderId=orderHEFromDb.Id});
+        }
+
+        [HttpPost]
+        [Authorize(Roles = SD.Role_Admin)]
+        [ValidateAntiForgeryToken]
+        public IActionResult StartProcessing()
+        {
+            _unitOfWork.OrderHeader.UpdateStatus(orderVM.Orderheader.Id, SD.StatusInProcess);
+            _unitOfWork.Save();
+            TempData["Success"] = "Order Status Updated Successfully.";
+            return RedirectToAction("Details", "Order", new { orderId = orderVM.Orderheader.Id });
+        }
+
+        [HttpPost]
+        [Authorize(Roles = SD.Role_Admin)]
+        [ValidateAntiForgeryToken]
+        public IActionResult ShipOrder()
+        {
+
+            var orderHeader = _unitOfWork.OrderHeader.GetFirstOrDefault(u => u.Id == orderVM.Orderheader.Id, tracked: false);
+            orderHeader.TrackingNumber = orderVM.Orderheader.TrackingNumber;
+            orderHeader.Carrier = orderVM.Orderheader.Carrier;
+            orderHeader.OrderStatus = SD.StatusShipped;
+            orderHeader.ShippingDate = DateTime.Now;
+           
+            _unitOfWork.OrderHeader.Update(orderHeader);
+            _unitOfWork.Save();
+            TempData["Success"] = "Order Shipped Successfully.";
+            return RedirectToAction("Details", "Order", new { orderId = orderVM.Orderheader.Id });
+        }
+
+
+        [HttpPost]
+        [Authorize(Roles = SD.Role_Admin)]
+        [ValidateAntiForgeryToken]
+        public IActionResult CancelOrder()
+        {
+
+            var orderHeader = _unitOfWork.OrderHeader.GetFirstOrDefault(u => u.Id == orderVM.Orderheader.Id, tracked: false);
+            if(orderHeader.PaymentStatus == SD.PaymentStatusApproved)
+            {
+                var options = new RefundCreateOptions
+                {
+                    Reason = RefundReasons.RequestedByCustomer,
+                    PaymentIntent = orderHeader.PaymentIntentId,
+                    
+                };
+                var service = new Stripe.RefundService();
+                Refund refund = service.Create(options);
+                _unitOfWork.OrderHeader.UpdateStatus(orderHeader.Id, SD.StatusCancelled,SD.StatusRefunded);
+            }
+            else
+            {
+                _unitOfWork.OrderHeader.UpdateStatus(orderHeader.Id, SD.StatusCancelled, SD.StatusCancelled);
+
+            }
+            _unitOfWork.Save();
+            TempData["Success"] = "Order Cancelled Successfully.";
+            return RedirectToAction("Details", "Order", new { orderId = orderVM.Orderheader.Id });
         }
 
         #region API CALLS

@@ -243,21 +243,17 @@
 							</ul>
 							@if (User.IsInRole(SD.Role_Admin)){
 								if(Model.Orderheader.OrderStatus == SD.StatusApproved){
-									<input type="submit" class="btn btn-primary form-control my-1" value="Start Processing" />
+									<input asp-action="StartProcessing" type="submit" class="btn btn-primary form-control my-1" value="Start Processing" />
 
 								}
 								if (Model.Orderheader.OrderStatus == SD.StatusInProcess)
 								{
-									<input type="submit" class="btn btn-primary form-control my-1" value="Ship Order" />
+									<input  onclick="return validateInput()" asp-action="ShipOrder"  type="submit" class="btn btn-primary form-control my-1" value="Ship Order" />
 
 								}
-								if (Model.Orderheader.OrderStatus == SD.PaymentStatusPending)
-								{
-									<input type="submit" class="btn btn-success form-control my-1" value="Pay Now" />
-
-								}
+					
 								if (Model.Orderheader.OrderStatus != SD.StatusCancelled){
-									<input type="submit" class="btn btn-danger form-control my-1" value="Cancel Order" />
+									<input asp-action="CancelOrder" type="submit" class="btn btn-danger form-control my-1" value="Cancel Order" />
 
 								}
 							}
@@ -269,3 +265,30 @@
 	</div>
 </form>
 
+@section Scripts
+	{
+		<partial name="_ValidationScriptsPartial" />
+	<script>
+		function validateInput() {
+			if (document.getElementById("trackingNumber").value == "") {
+				Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					text: 'Please enter tracking number!',
+
+				});
+				return false;
+			}
+			if (document.getElementById("carrier").value == "") {
+				Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					text: 'Please enter carrier!',
+
+				});
+				return false;
+			}
+			return true;
+		}
+	</script>
+}

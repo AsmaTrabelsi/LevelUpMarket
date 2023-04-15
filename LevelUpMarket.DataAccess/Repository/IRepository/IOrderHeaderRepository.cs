@@ -10,7 +10,7 @@ namespace LevelUpMarket.DataAccess.Repository.IRepository
     public interface IOrderHeaderRepository : IRepository<Orderheader>
     {
         void Update(Orderheader obj);
-        void UpdateStatus(int id, string orderStatus, string? paymentStatus);
+        void UpdateStatus(int id, string orderStatus, string? paymentStatus = null);
         void UpdateStripePaymentId(int id, string sessionId, string paymentItentId);
     }
 }

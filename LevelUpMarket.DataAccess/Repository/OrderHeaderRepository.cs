@@ -23,7 +23,7 @@ namespace LevelUpMarket.DataAccess.Repository
             _db.Orderheaders.Update(obj);
         }
 
-        void IOrderHeaderRepository.UpdateStatus(int id, string orderStatus, string? paymentStatus)
+        void IOrderHeaderRepository.UpdateStatus(int id, string orderStatus, string? paymentStatus=null)
         {
             var orderFromDb = _db.Orderheaders.FirstOrDefault(o => o.Id == id);
             if(orderFromDb != null)

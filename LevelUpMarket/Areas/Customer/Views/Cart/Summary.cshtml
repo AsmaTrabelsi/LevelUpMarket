@@ -31,7 +31,7 @@
 								</div>
 								<div class="col-9">
 									<input asp-for="Orderheader.Name" class="form-control" />
-									<span asp-validation-for="Orderheader.Name"></span>
+									<span asp-validation-for="Orderheader.Name" class="text-danger"></span>
 								</div>
 							</div>
 							<div class="row my-1">
@@ -40,7 +40,7 @@
 								</div>
 								<div class="col-9">
 									<input asp-for="Orderheader.PhoneNumber" class="form-control" />
-									<span asp-validation-for="Orderheader.PhoneNumber"></span>
+									<span asp-validation-for="Orderheader.PhoneNumber" class="text-danger"></span>
 								</div>
 							</div>
 							<div class="row my-1">
@@ -49,7 +49,7 @@
 								</div>
 								<div class="col-9">
 									<input asp-for="Orderheader.StreetAddress"  class="form-control" />
-									<span asp-validation-for="Orderheader.StreetAddress"></span>
+									<span asp-validation-for="Orderheader.StreetAddress" class="text-danger"></span>
 								</div>
 							</div>
 							<div class="row my-1">
@@ -58,7 +58,7 @@
 								</div>
 								<div class="col-9">
 									<input asp-for="Orderheader.City" class="form-control" />
-									<span asp-validation-for="Orderheader.City"></span>
+									<span asp-validation-for="Orderheader.City" class="text-danger"></span>
 								</div>
 							</div>
 							<div class="row my-1">
@@ -67,7 +67,7 @@
 								</div>
 								<div class="col-9">
 									<input asp-for="Orderheader.State" class="form-control" />
-									<span asp-validation-for="Orderheader.State"></span>
+									<span asp-validation-for="Orderheader.State" class="text-danger"></span>
 								</div>
 							</div>
 							<div class="row my-1">
@@ -76,7 +76,7 @@
 								</div>
 								<div class="col-9">
 									<input asp-for="Orderheader.PostalCode" class="form-control" />
-									<span asp-validation-for="Orderheader.PostalCode"></span>
+									<span asp-validation-for="Orderheader.PostalCode" class="text-danger"></span>
 								</div>
 							</div>
 						</div>
@@ -120,3 +120,8 @@
 		</div>
 	</div>
 </form>
+@section Scripts
+	{
+		<partial name="_ValidationScriptsPartial" />
+
+	}
