@@ -5,12 +5,14 @@
 	<br />
 	<div class="container">
 		<div class="card">
-			<div class="card-header bg-dark text-light ml-0 row container">
+			<div class="card-header bg-dark text-light ml-0">
+				<div class="container row">
 				<div class="col-12 d-none d-md-block col-md-6 pb-1">
 					<i class="fas fa-shopping-cart"></i> &nbsp; Order Summary
 				</div>
 				<div class="col-12 col-md-4 offset-md-2 text-right">
 					<a asp-action="Index" class="btn btn-outline-info form-control btn-sm">Back to Orders</a>
+				</div>
 				</div>
 			</div>
 			<div class="card-body">
@@ -141,7 +143,7 @@
 									}
 									else
 									{
-										<input asp-for="Orderheader.Carrier" type="text" class="form-control" />
+										<input asp-for="Orderheader.Carrier" type="text" disabled class="form-control" />
 
 									}
 								</div>
@@ -155,7 +157,7 @@
 									}
 									else
 									{
-										<input asp-for="Orderheader.TrackingNumber" type="text" class="form-control" />
+										<input asp-for="Orderheader.TrackingNumber" type="text" disabled class="form-control" />
 
 									}
 								</div>
@@ -202,8 +204,11 @@
 									<input type="text" asp-for="Orderheader.PaymentStatus" readonly class="form-control" />
 								</div>
 							</div>
-							<input type="submit" asp-action="UpdateOrderDetail" class="btn btn-warning form-control my-1" value="Update Order Details" />
+							@if (User.IsInRole(SD.Role_Admin))
+							{
 
+								<input type="submit" asp-action="UpdateOrderDetail" class="btn btn-warning form-control my-1" value="Update Order Details" />
+							}
 
 						</div>
 						<div class="col-12 col-lg-5 offset-lg-1">
@@ -251,11 +256,16 @@
 									<input  onclick="return validateInput()" asp-action="ShipOrder"  type="submit" class="btn btn-primary form-control my-1" value="Ship Order" />
 
 								}
-					
+								
 								if (Model.Orderheader.OrderStatus != SD.StatusCancelled){
 									<input asp-action="CancelOrder" type="submit" class="btn btn-danger form-control my-1" value="Cancel Order" />
 
 								}
+							}
+							@if (User.IsInRole(SD.Role_User) && Model.Orderheader.OrderStatus == SD.PaymentStatusPending)
+							{
+								<input  asp-action="Details_PayNow" asp-route-orderId="@Model.Orderheader.Id" type="submit" class="btn btn-success form-control my-1" value="Pay Now" />
+
 							}
 						</div>
 					</div>

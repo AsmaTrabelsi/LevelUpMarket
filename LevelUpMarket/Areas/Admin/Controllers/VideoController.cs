@@ -1,5 +1,7 @@
 ﻿using LevelUpMarket.DataAccess.Repository.IRepository;
 using LevelUpMarket.Models;
+using LevelUpMarket.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LevelUpMarketWeb.Areas.Admin.Controllers
@@ -24,6 +26,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
             return Json(new { data = videoList });
         }
         [HttpDelete]
+        [Authorize(Roles = SD.Role_Admin)]
         public IActionResult DeleteVideoPost(int? id)
         {
             var video = _unitOfWork.Video.GetFirstOrDefault(c => c.Id == id);
@@ -40,6 +43,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
 
         // test this method with Video parametre
         [HttpPost]
+        [Authorize(Roles = SD.Role_Admin)]
         public IActionResult AddVideo(Video v)
 
         {

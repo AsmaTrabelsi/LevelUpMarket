@@ -1,6 +1,8 @@
 ﻿using LevelUpMarket.DataAccess.Repository.IRepository;
 using LevelUpMarket.Models;
 using LevelUpMarket.Models.ViewModel;
+using LevelUpMarket.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Packaging.Signing;
 
@@ -27,6 +29,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
+        [Authorize(Roles = SD.Role_Admin)]
         [ValidateAntiForgeryToken]
         public IActionResult AddCharacter(Character character, IFormFile file, int idGame, int charcterId)
         {
@@ -96,6 +99,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = SD.Role_Admin)]
         public IActionResult DeleteCharacterPost(int? id)
         {
             var character = _unitOfWork.Character.GetFirstOrDefault(c => c.CharacterId == id);

@@ -5,6 +5,7 @@ using LevelUpMarket.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Stripe;
+using Stripe.Checkout;
 using Stripe.TestHelpers;
 using System.Diagnostics;
 using System.Security.Claims;
@@ -36,6 +37,71 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
                 OrderDetail = _unitOfWork.OrderDetail.GetAll(u=> u.OrderId == orderId,includeProperties:"Game")
             };
             return View(orderVM);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Details_PayNow(int orderId)
+        {
+
+            orderVM.Orderheader = _unitOfWork.OrderHeader.GetFirstOrDefault(u => u.Id == orderId, includeProperties: "ApplicationUser");
+            orderVM.OrderDetail = _unitOfWork.OrderDetail.GetAll(u => u.OrderId == orderId, includeProperties: "Game");
+            //stripe settings
+            var domain = "https://localhost:7051/";
+            var options = new SessionCreateOptions
+            {
+                LineItems = new List<SessionLineItemOptions>(),
+                Mode = "payment",
+                SuccessUrl = domain + $"Admin/Order/PaymentConfirmation?orderHeaderId={orderVM.Orderheader.Id}",
+                CancelUrl = domain + "Admin/Order/Details?orderId={orderVM.Orderheader.Id}",
+            };
+            foreach (var item in orderVM.OrderDetail)
+            {
+                var sessionLineItem = new SessionLineItemOptions
+                {
+                    PriceData = new SessionLineItemPriceDataOptions
+                    {
+                        UnitAmount = (long)(item.Game.Price * 100),
+                        Currency = "usd",
+                        ProductData = new SessionLineItemPriceDataProductDataOptions
+                        {
+                            Name = item.Game.Name,
+
+                        },
+                    },
+                    Quantity = item.Count,
+                };
+                options.LineItems.Add(sessionLineItem);
+            }
+            var service = new SessionService();
+            Session session = service.Create(options);
+            orderVM.Orderheader.SessionId = session.Id;
+            orderVM.Orderheader.PaymentIntentId = session.PaymentIntentId;
+            _unitOfWork.OrderHeader.UpdateStripePaymentId(orderVM.Orderheader.Id, session.Id, session.PaymentIntentId);
+            _unitOfWork.Save();
+            Response.Headers.Add("Location", session.Url);
+            return new StatusCodeResult(303);
+        }
+        public IActionResult PaymentConfirmation(int orderHeaderId)
+        {
+            Orderheader orderheader = _unitOfWork.OrderHeader.GetFirstOrDefault(u => u.Id == orderHeaderId);
+
+            var service = new SessionService();
+            Session session = service.Get(orderheader.SessionId);
+            // check the stripe status
+            if (session.PaymentStatus.ToLower() == "paid")
+            {
+                _unitOfWork.OrderHeader.UpdateStripePaymentId(orderHeaderId, orderheader.SessionId, session.PaymentIntentId);
+
+                _unitOfWork.OrderHeader.UpdateStatus(orderHeaderId, SD.StatusApproved, SD.PaymentStatusApproved);
+                _unitOfWork.Save();
+            }
+            List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == orderheader.ApplicationUserId).ToList();
+            _unitOfWork.ShoppingCart.RemoveRange(shoppingCarts);
+            _unitOfWork.Save();
+
+            return View(orderHeaderId);
+
         }
         [HttpPost]
         [Authorize(Roles =SD.Role_Admin)]

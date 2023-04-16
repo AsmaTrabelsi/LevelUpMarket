@@ -29,6 +29,39 @@ namespace LevelUpMarket.Data
         public DbSet<OrderDetail> OrderDetail { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //Seed data
+
+            // for Plateforme
+            modelBuilder.Entity<Plateforme>().HasData(
+                new Plateforme { Id=1, Name="PC"},
+                new Plateforme { Id = 2, Name = "PS2" },
+                new Plateforme { Id = 3, Name = "PS3" },
+                new Plateforme { Id = 4, Name = "PS4" },
+                new Plateforme { Id = 5, Name = "PS5" },
+                new Plateforme { Id = 6, Name = "XBox" }
+                );
+            // for Gender
+            modelBuilder.Entity<Gender>().HasData(
+               new Gender { Id = 1, Name = "Action" },
+               new Gender { Id = 2, Name = "Adventure" },
+               new Gender { Id = 3, Name = "Strategy" },
+               new Gender { Id = 4, Name = "Sport" },
+               new Gender { Id = 5, Name = "Story rich" },
+               new Gender { Id = 6, Name = "Zombies" },
+               new Gender { Id = 7, Name = "Viloent" },
+               new Gender { Id = 8, Name = "Single player" },
+               new Gender { Id = 9, Name = "Emotional" },
+               new Gender { Id = 10, Name = "Horror" },
+               new Gender { Id = 11, Name = "Drama" },
+               new Gender { Id = 12, Name = "Multiplayer" },
+               new Gender { Id = 13, Name = "Remake" },
+               new Gender { Id = 14, Name = "Survival" },
+               new Gender { Id = 15, Name = "First Person Shooter" },
+               new Gender { Id = 16, Name = "Puzzle" },
+               new Gender { Id = 17, Name = "RPG" },
+               new Gender { Id = 18, Name = "Third-person shooter" }
+               );
+
             // relation many to many - game and plateforme-
             modelBuilder.Entity<Game>()
                 .HasMany(g => g.Plateformes)

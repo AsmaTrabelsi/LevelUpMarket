@@ -2,6 +2,8 @@
 using LevelUpMarket.DataAccess.Repository;
 using LevelUpMarket.DataAccess.Repository.IRepository;
 using LevelUpMarket.Models;
+using LevelUpMarket.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LevelUpMarketWeb.Areas.Admin.Controllers
@@ -22,11 +24,13 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
             return View(plateformeList);
         }
         //Get
+        [Authorize(Roles = SD.Role_Admin)]
         public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
+        [Authorize(Roles = SD.Role_Admin)]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Plateforme plateforme)
         {
@@ -47,6 +51,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
         }
 
         //Get
+        [Authorize(Roles = SD.Role_Admin)]
         public IActionResult Edit(int? id)
         {
             if (id == null || id == 0)
@@ -62,6 +67,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
             return View(plateforme);
         }
         [HttpPost]
+        [Authorize(Roles = SD.Role_Admin)]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Plateforme plateforme)
         {
@@ -77,6 +83,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
             return View(plateforme);
 
         }
+        [Authorize(Roles = SD.Role_Admin)]
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)
@@ -92,6 +99,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
             return View(plateforme);
         }
         [HttpPost]
+        [Authorize(Roles = SD.Role_Admin)]
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
         {

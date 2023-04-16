@@ -3,6 +3,7 @@ using LevelUpMarket.Models;
 using LevelUpMarket.Models.ViewModel;
 using LevelUpMarket.Utility;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Stripe.Checkout;
@@ -15,12 +16,14 @@ namespace LevelUpMarketWeb.Areas.Customer.Controllers
     public class CartController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IEmailSender _emailSender; 
         [BindProperty]
         public ShoppingCartVM ShoppingCartVM { get; set; }
         
-        public CartController(IUnitOfWork unitOfWork)
+        public CartController(IUnitOfWork unitOfWork, IEmailSender emailSender)
         {
             _unitOfWork = unitOfWork;
+            _emailSender = emailSender;
         }
 
         public IActionResult Index()
@@ -55,6 +58,8 @@ namespace LevelUpMarketWeb.Areas.Customer.Controllers
            if(cart.Count <= 1)
             {
                 _unitOfWork.ShoppingCart.Remove(cart);
+                var count = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == cart.ApplicationUserId).ToList().Count-1;
+                HttpContext.Session.SetInt32(SD.SessionCart, count);
 
             }
             else
@@ -70,6 +75,8 @@ namespace LevelUpMarketWeb.Areas.Customer.Controllers
             var cart = _unitOfWork.ShoppingCart.GetFirstOrDefault(u => u.Id == cartId);
             _unitOfWork.ShoppingCart.Remove(cart);
             _unitOfWork.Save();
+            var count = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == cart.ApplicationUserId).ToList().Count;
+            HttpContext.Session.SetInt32(SD.SessionCart, count);
             return RedirectToAction(nameof(Index));
         }
 
@@ -182,7 +189,7 @@ namespace LevelUpMarketWeb.Areas.Customer.Controllers
 
         public IActionResult OrderConfirmation(int id)
         {
-            Orderheader orderheader = _unitOfWork.OrderHeader.GetFirstOrDefault(u => u.Id == id);
+            Orderheader orderheader = _unitOfWork.OrderHeader.GetFirstOrDefault(u => u.Id == id,includeProperties:"ApplicationUser");
           
 
             var service = new SessionService();
@@ -195,8 +202,10 @@ namespace LevelUpMarketWeb.Areas.Customer.Controllers
                 _unitOfWork.OrderHeader.UpdateStatus(id, SD.StatusApproved,SD.PaymentStatusApproved);
                 _unitOfWork.Save();
             }
+            _emailSender.SendEmailAsync(orderheader.ApplicationUser.Email, "New order - LevelUp Market","<p> new OrderDetail Created </p> ");
             List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == orderheader.ApplicationUserId).ToList();
-             _unitOfWork.ShoppingCart.RemoveRange(shoppingCarts);
+            HttpContext.Session.Clear(); 
+            _unitOfWork.ShoppingCart.RemoveRange(shoppingCarts);
                _unitOfWork.Save();
              return View(id);
 

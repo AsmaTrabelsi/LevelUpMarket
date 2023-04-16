@@ -29,7 +29,6 @@
           "C:\\Program Files\\dotnet\\library-packs": {},
           "C:\\ProgramData\\UiPath\\NugetFallbackFolder": {},
           "https://api.nuget.org/v3/index.json": {},
-          "https://pkgs.dev.azure.com/dynamicscrm/One/_packaging/Microsoft.PowerApps.Tools/nuget/v3/index.json": {},
           "https://www.myget.org/F/workflow/": {}
         },
         "frameworks": {
@@ -48,9 +47,17 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "MailKit": {
+              "target": "Package",
+              "version": "[3.6.0, )"
+            },
             "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
               "version": "[6.0.15, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[4.0.0, )"
             }
           },
           "imports": [

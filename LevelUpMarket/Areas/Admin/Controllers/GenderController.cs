@@ -2,6 +2,8 @@
 using LevelUpMarket.DataAccess.Repository;
 using LevelUpMarket.DataAccess.Repository.IRepository;
 using LevelUpMarket.Models;
+using LevelUpMarket.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LevelUpMarketWeb.Areas.Admin.Controllers
@@ -22,6 +24,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
             return View(genderList);
         }
         //Get
+        [Authorize(Roles = SD.Role_Admin)]
         public IActionResult Create()
         {
             if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
@@ -31,6 +34,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
+        [Authorize(Roles = SD.Role_Admin)]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Gender gender)
         {
@@ -51,6 +55,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
         }
 
         //Get
+        [Authorize(Roles = SD.Role_Admin)]
         public IActionResult Edit(int? id)
         {
             if (id == null || id == 0)
@@ -66,6 +71,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
             return View(gender);
         }
         [HttpPost]
+        [Authorize(Roles = SD.Role_Admin)]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Gender gender)
         {
@@ -81,6 +87,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
             return View(gender);
 
         }
+        [Authorize(Roles = SD.Role_Admin)]
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)
@@ -96,6 +103,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
             return View(gender);
         }
         [HttpPost]
+        [Authorize(Roles = SD.Role_Admin)]
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
         {

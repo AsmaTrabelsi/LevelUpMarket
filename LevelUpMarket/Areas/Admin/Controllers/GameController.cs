@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using Newtonsoft.Json;
+using LevelUpMarket.Utility;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LevelUpMarketWeb.Areas.Admin.Controllers
 {
@@ -32,6 +34,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
 
 
         //Get
+        [Authorize(Roles = SD.Role_Admin)]
         public IActionResult Upsert(int? id)
         {
             GameVM gameVM = new()
@@ -72,6 +75,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
             return View(gameVM);
         }
         [HttpPost]
+        [Authorize(Roles = SD.Role_Admin)]
         [ValidateAntiForgeryToken]
         public IActionResult Upsert(GameVM gameVm, List<IFormFile> files)
         {
@@ -236,6 +240,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
 
         }
         // Get
+        [Authorize(Roles = SD.Role_Admin)]
         public IActionResult UpsertMoreDetails(Game game)
         {
 
@@ -254,6 +259,7 @@ namespace LevelUpMarketWeb.Areas.Admin.Controllers
             return Json(new { data = gameList });
         }
         [HttpDelete]
+        [Authorize(Roles = SD.Role_Admin)]
         public IActionResult DeletePost(int? id)
         {
             var game = _unitOfWork.Game.GetFirstOrDefault(x => x.Id == id,includeProperties: "Images");
